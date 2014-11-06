@@ -1,0 +1,22 @@
+{
+  "name": "sf-hk-search",
+  "version": "0.0.1",
+  "description": "sf express",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.1",
+    "log4js": "^0.6.21",
+    "mysql": "^2.5.3",
+    "node-cache": "^1.0.2",
+    "node-dev": "^2.6.0"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git"
+  },
+  "readmeFilename": "Readme.md",
+  "bugs": {
+    "url": "https://github.com/visionmedia/co/issues"
+  },
+  "homepage": "https://github.com/visionmedia/co"
+}
