@@ -1,4 +1,8 @@
 var mysql = require('mysql');
+var co = require('co');
+var redisClient = require('redis').createClient();
+var wrapper = require('co-redis');
+var redisCo = wrapper(redisClient);
 
 var pool = mysql.createPool({
     host: 'localhost',
@@ -23,22 +27,22 @@ function isEmpty(obj){
 var getProducts = function(queryCb){
 	myCache.get( "myKey", function( err, value ){
   	if( !err && !isEmpty(value) ){
-		console.log("Hit......cache.........");
-		console.log(isEmpty(value));
-		console.log(value["myKey"]);
+		//console.log("Hit......cache.........");
+		//console.log(isEmpty(value));
+		//console.log(value["myKey"]);
 		queryCb(value["myKey"]);
   	}else{
 	pool.getConnection(function (err, conn) {
     		if (err) console.log("POOL ==> " + err);
         		conn.query(selectSQL_product, function (err2, rows) {
             			if (err2) console.log(err2);
-            				console.log("SELECT ==> ");
+            				//console.log("SELECT ==> ");
             				//for (var i in rows) {
                 			//	console.log(rows[i]);
            				//}
 					myCache.set( "myKey", rows, function( err, success ){
   					if( !err && success ){
-    						console.log( success );
+    						//console.log( success );
   					}
 					});
 					queryCb(rows);
