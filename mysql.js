@@ -15,7 +15,7 @@ var NodeCache = require( "node-cache" );
 //var myCache = new NodeCache();
 var myCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 
-var selectSQL_product = 'select PRODUCT_NAME,UNIT_PRICE,LIST_PRICE,APP_USERCOUNT,VISITCOUNT,PRODUCT_ID,CENTER_PICTURE,SMALL_PICTURE from product where CHECK_STATUS = 1 AND store_check_status =1 AND uc_activation_status =1 AND uc_status = 1 limit 20';
+var selectSQL_product = "select PRODUCT_NAME,UNIT_PRICE,LIST_PRICE,APP_USERCOUNT,VISITCOUNT,PRODUCT_ID,CENTER_PICTURE,SMALL_PICTURE from product where PRODUCT_NAME like ? AND SEARCHKEY like ? AND CHECK_STATUS = 1 AND store_check_status =1 AND uc_activation_status =1 AND uc_status = 1 limit ?,?";
 
 function isEmpty(obj){
     for (var name in obj){
@@ -24,23 +24,26 @@ function isEmpty(obj){
     return true;
 };
 
-var getProducts = function(queryCb){
-	myCache.get( "myKey", function( err, value ){
+var getProducts = function(queryParams,queryCb){
+	console.log(queryParams);
+	var searchkey = "%"+queryParams["searchkey"]+"%";
+	var start     =     queryParams["start"];
+	var end       =     queryParams["end"];
+	var cacheKey  = searchkey+start+"#"+end;
+	console.log(cacheKey);
+	myCache.get(cacheKey, function( err, value ){
   	if( !err && !isEmpty(value) ){
-		//console.log("Hit......cache.........");
-		//console.log(isEmpty(value));
-		//console.log(value["myKey"]);
-		queryCb(value["myKey"]);
+		queryCb(value[cacheKey]);
   	}else{
 	pool.getConnection(function (err, conn) {
     		if (err) console.log("POOL ==> " + err);
-        		conn.query(selectSQL_product, function (err2, rows) {
+        		conn.query(selectSQL_product,[searchkey,searchkey,start,end],function (err2, rows) {
             			if (err2) console.log(err2);
             				//console.log("SELECT ==> ");
             				//for (var i in rows) {
                 			//	console.log(rows[i]);
            				//}
-					myCache.set( "myKey", rows, function( err, success ){
+					myCache.set(cacheKey, rows, function( err, success ){
   					if( !err && success ){
     						//console.log( success );
   					}

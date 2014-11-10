@@ -11,23 +11,20 @@ app.use(bodyParser.json());
 
 app.use(express.static('public'));
 
-
-var todo  = {};
-
-var todos = [];
-
-// app.get('/', function(req, res){
-//        res.send('hello world');
-// });
-
 app.get("/",function(req,res){
         res.redirect('search2.html');
 });
 
 app.get("/getProducts",function(req,res){
-	mysql.getProducts(function(result){
-		res.send(result);
-	});
+	console.log(req.query);
+	var searchkey = req.query.searchkey;
+	if(searchkey ==="" || searchkey === undefined){
+		res.send("");
+	}else{
+		mysql.getProducts({searchkey:searchkey,start:0,end:20},function(result){
+			res.send(result);
+		});
+	}
 });
 
 app.get("/getProductDetails",function(req,res){

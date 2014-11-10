@@ -112,27 +112,19 @@
 </ul>	
  	
 
-<div class="search">  
-		 <div class="search_shop">
+<div class="search">
+ <div class="search_shop">
           <h3 id="searchName">商品 </h3><s></s>
           <div class="shlx" style="display: none;">
             <a href="javascript:changSearchName('product');">商品</a>
-						
-						<a href="javascript:changSearchName('content');">资讯</a>	
-        	</div>
-		</div>
-		<div id="productSearch">
-		  <input type="text" class="search_text" name="curProductkey" id="searchProductKey" value="" onclick="javascript:if(this.value==&#39;请输入搜索关键字&#39;){this.value=&#39;&#39;;}" onblur="javascript:if(this.value==&#39;&#39;){this.value=&#39;请输入搜索关键字&#39;;}" autocomplete="off" onkeydown="javascript:if(event.keyCode==13) return searchSubmitForm(&#39;curProductkey&#39;,&#39;searchProductKey&#39;);">
-			<a href="javascript:searchSubmitForm('curProductkey','searchProductKey')" class="search_button">搜索</a>
-		</div>
-		<div id="storeSearch" style="display: none;">
-		  <input type="text" class="search_text" name="curStorekey" id="searchStoreKey" value="大米" onclick="javascript:if(this.value==&#39;请输入搜索关键字&#39;){this.value=&#39;&#39;;}" onblur="javascript:if(this.value==&#39;&#39;){this.value=&#39;请输入搜索关键字&#39;;}" autocomplete="off" onkeydown="javascript:if(event.keyCode==13) return searchSubmitForm(&#39;curStorekey&#39;,&#39;searchStoreKey&#39;);">
-			<a href="javascript:searchSubmitForm('curStorekey','searchStoreKey')" class="search_button">搜索</a>
-		</div>
-		<div id="contentSearch" style="display: none;">
-		  <input type="text" class="search_text" name="curContentkey" id="searchContentKey" value="大米" onclick="javascript:if(this.value==&#39;请输入搜索关键字&#39;){this.value=&#39;&#39;;}" onblur="javascript:if(this.value==&#39;&#39;){this.value=&#39;请输入搜索关键字&#39;;}" autocomplete="off" onkeydown="javascript:if(event.keyCode==13) return searchSubmitForm(&#39;curContentkey&#39;,&#39;searchContentKey&#39;);">
-			<a href="javascript:searchSubmitForm('curContentkey','searchContentKey')" class="search_button">搜索</a>
-		</div> 
+	    <a href="javascript:changSearchName('content');">资讯</a>	
+	  </div>
+ </div>
+ <div id="productSearch">
+	<input type="text" class="search_text" name="curProductkey" id="searchProductKey" value="">
+	<a class="search_button">搜索</a>
+ </div>
+</div> <!--END of search -->
 
      	 </div>
 </div>
@@ -2087,40 +2079,6 @@ function check_validate1(value){
 <ul id="productsList">
 <!-- 大图展示 -->
 <!-- Item 1 -->
-<!-- Templates -->
-<script id="productTemplate" type="text/x-jsrender">
-<li class="">
-<div class="y_bigpic">
-  <div>
-      <a target="_blank" href="http://www.sfheike.com/p_{{>PRODUCT_ID}}.htm" title="{{>PRODUCT_NAME}}"><img data-url="http://hkimg.sf-express.com/{{>CENTER_PICTURE}}" src="http://hkimg.sf-express.com/{{>CENTER_PICTURE}}" alt="{{>PRODUCT_NAME}}}" width="208" height="208"></a>
-  </div>
-</div>
-<div class="y_smpicli">
-    <span class="y_cur"><img src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}" alt="{{>PRODUCT_NAME}}"></span>
-</div>
-    <p class="price"><span>￥{{>UNIT_PRICE}}</span><del>{{>LIST_PRICE}}</del></p>
-    <p class="name"><a target="_blank" title="{{>PRODUCT_NAME}}" href="http://www.sfheike.com/p_{{>PRODUCT_ID}}.htm">{{>PRODUCT_NAME}}</a></p>
-    <p class="xl">累计评价:{{>APP_USERCOUNT}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关注：{{>VISITCOUNT}}次</p>
-</li>
-</script>
-<script type="text/javascript">
-	var products = [
-			{ PRODUCT_NAME: '健司KENJI 健康时刻瑞士高山牛乳脆片  160g',
-			  UNIT_PRICE: 12.9,
-			  LIST_PRICE: 22,
-			  APP_USERCOUNT: 0,
-			  VISITCOUNT: 0,
-			  PRODUCT_ID: '002a41857' }
-	];
-	$.ajax({
-  		type: "GET",
-  		url: "/getProducts",
-  		data: { name: "John", location: "Boston" }
-	})
-  	.done(function( msg ) {
-		$("#productsList").html($("#productTemplate").render(msg));
-  	});
-</script>
 </ul>
 </div>
 <div class="y_listpg">
@@ -2166,6 +2124,7 @@ $(function(){
 	},function(){
 		$(this).removeClass("y_cur");
 	});
+
 })
 </script>
 <script>
@@ -2308,5 +2267,67 @@ $(function(){
 		});
 	})	
 </script>
+<!-- Templates -->
+<script id="productTemplate" type="text/x-jsrender">
+<li class="">
+<div class="y_bigpic">
+  <div>
+      <a target="_blank" href="http://www.sfheike.com/p_{{>PRODUCT_ID}}.htm" title="{{>PRODUCT_NAME}}"><img data-url="http://hkimg.sf-express.com/{{>CENTER_PICTURE}}" src="http://hkimg.sf-express.com/{{>CENTER_PICTURE}}" alt="{{>PRODUCT_NAME}}}" width="208" height="208"></a>
+  </div>
+</div>
+<div class="y_smpicli">
+    <span class="y_cur"><img src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}" alt="{{>PRODUCT_NAME}}"></span>
+</div>
+    <p class="price"><span>￥{{>UNIT_PRICE}}</span><del>{{>LIST_PRICE}}</del></p>
+    <p class="name"><a target="_blank" title="{{>PRODUCT_NAME}}" href="http://www.sfheike.com/p_{{>PRODUCT_ID}}.htm">{{>PRODUCT_NAME}}</a></p>
+    <p class="xl">累计评价:{{>APP_USERCOUNT}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关注：{{>VISITCOUNT}}次</p>
+</li>
+</script>
+<script type="text/javascript">
+	var products = [
+			{ PRODUCT_NAME: '健司KENJI 健康时刻瑞士高山牛乳脆片  160g',
+			  UNIT_PRICE: 12.9,
+			  LIST_PRICE: 22,
+			  APP_USERCOUNT: 0,
+			  VISITCOUNT: 0,
+			  PRODUCT_ID: '002a41857' }
+	];
+	$.ajax({
+  		type: "GET",
+  		url: "/getProducts",
+  		data: { name: "John", location: "Boston" }
+	})
+  	.done(function( msg ) {
+		$("#productsList").html($("#productTemplate").render(msg));
+  	});
+	//处理搜索框的按键事件
+	$(".search_text").keydown(function(event){
+		//console.log(event);
+		if(event.keyCode===13){
+			$(".search_button").trigger("click");
+		}
+	});
+	//新加的搜索逻辑
+	$(".search_button").click(function(){
+		var searchkey = $(".search_text").val();
+		console.log(searchkey);
+		if(searchkey === "请输入搜索关键字"){
+			alert("error~~~~key~~~");
+			return;
+		}
+        	$.ajax({
+                	type: "GET",
+                	url: "/getProducts",
+                	data: { searchkey: searchkey }
+        	})
+        	.done(function( msg ) {
+			console.log(msg);
+			var t =$("#productTemplate").render(msg);
+			//console.log(t);
+                	$("#productsList").html(t);
+        	});
+	});//END of search_button click
+</script>
+
 </body>
 </html>
