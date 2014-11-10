@@ -15,7 +15,7 @@ var NodeCache = require( "node-cache" );
 //var myCache = new NodeCache();
 var myCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 
-var selectSQL_product = "select PRODUCT_NAME,UNIT_PRICE,LIST_PRICE,APP_USERCOUNT,VISITCOUNT,PRODUCT_ID,CENTER_PICTURE,SMALL_PICTURE from product where PRODUCT_NAME like ? AND SEARCHKEY like ? AND CHECK_STATUS = 1 AND store_check_status =1 AND uc_activation_status =1 AND uc_status = 1 limit ?,?";
+var selectSQL_product = "select PRODUCT_NAME,UNIT_PRICE,LIST_PRICE,APP_USERCOUNT,VISITCOUNT,PRODUCT_ID,CENTER_PICTURE,SMALL_PICTURE from product where PRODUCT_NAME like ? AND SEARCHKEY like ? AND CHECK_STATUS = 1 AND store_check_status =1 AND uc_activation_status =1 AND uc_status = 1";
 
 function isEmpty(obj){
     for (var name in obj){
@@ -27,8 +27,8 @@ function isEmpty(obj){
 var getProducts = function(queryParams,queryCb){
 	console.log(queryParams);
 	var searchkey = "%"+queryParams["searchkey"]+"%";
-	var start     =     queryParams["start"];
-	var end       =     queryParams["end"];
+	var start     =     0    ;//queryParams["start"];
+	var end       =     1000 ;//queryParams["end"];
 	var cacheKey  = searchkey+start+"#"+end;
 	console.log(cacheKey);
 	myCache.get(cacheKey, function( err, value ){
@@ -37,7 +37,7 @@ var getProducts = function(queryParams,queryCb){
   	}else{
 	pool.getConnection(function (err, conn) {
     		if (err) console.log("POOL ==> " + err);
-        		conn.query(selectSQL_product,[searchkey,searchkey,start,end],function (err2, rows) {
+        		conn.query(selectSQL_product,[searchkey,searchkey],function (err2, rows) {
             			if (err2) console.log(err2);
             				//console.log("SELECT ==> ");
             				//for (var i in rows) {

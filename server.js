@@ -4,7 +4,7 @@ var app         = express();
 var mysql	= require("./mysql.js");
 
 // parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
 app.use(bodyParser.json());
@@ -12,14 +12,15 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get("/",function(req,res){
-        res.redirect('search2.html');
+	console.log(req.query.key);
+        res.redirect('search2.html?key='+req.query.key);
 });
 
 app.get("/getProducts",function(req,res){
 	console.log(req.query);
-	var searchkey = req.query.searchkey || "";
-	var start     = req.query.start     || 0;
-	var end       = req.query.end       || 20;
+	var searchkey = req.query.searchkey 	      || "";
+	var start     = parseInt(req.query.start)     || 0;
+	var end       = parseInt(req.query.end)       || 20;
 	
 	if(searchkey ==="" || searchkey === undefined){
 		res.send("");

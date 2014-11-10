@@ -2283,17 +2283,44 @@ $(function(){
     <p class="xl">累计评价:{{>APP_USERCOUNT}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关注：{{>VISITCOUNT}}次</p>
 </li>
 </script>
+<!-- Templates -->
+<script id="pagesArrayTemplate" type="text/x-jsrender">	
+	<a href="javascript:renderPageByUser({{>page}})">{{>page}}</a>
+</script>
+
 <script type="text/javascript">
 	var products = [];
-	$.ajax({
-  		type: "GET",
-  		url: "/getProducts",
-  		data: { name: "John", location: "Boston" }
-	})
-  	.done(function( msg ) {
-		products = msg;
-		$("#productsList").html($("#productTemplate").render(msg));
-  	});
+	//前端取得searchkey的传参，TODO：需要测试兼容性
+	var urlParams = {};
+	(function () {
+	    var match,
+	        pl     = /\+/g,  // Regex for replacing addition symbol with a space
+	        search = /([^&=]+)=?([^&]*)/g,
+	        decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+	        query  = window.location.search.substring(1);
+
+	    while (match = search.exec(query))
+	       urlParams[decode(match[1])] = decode(match[2]);
+	})();
+	if(urlParams.key){
+		var searchkey = $(".search_text").val(urlParams.key);
+		setTimeout(function(){	
+			$(".search_button").trigger("click");
+		},100);
+	}
+		
+	var renderPageByUser = function(page){
+		 var start = 20 * (page -1);
+		 var end   = 20 * page;
+			//console.log("length:",products.length);
+			//console.log("page:",page);
+			//console.log("start:",start);
+			//console.log("end:",end);
+
+                 var t =$("#productTemplate").render(products.slice(start,end));
+                        $("#productsList").html(t);
+	}
+	
 	//处理搜索框的按键事件
 	$(".search_text").keydown(function(event){
 		//console.log(event);
@@ -2301,7 +2328,49 @@ $(function(){
 			$(".search_button").trigger("click");
 		}
 	});
-	//新加的搜索逻辑
+
+	//全局计数器，用于保存分页逻辑========================================
+	var startPageOffset     = 0;
+	var endPageOffset	= 20;
+
+	var ajaxLoadData  = function (start,end,cb) {
+                var searchkey = $(".search_text").val();
+                //console.log(searchkey);
+                if(searchkey === "请输入搜索关键字"){
+                        alert("error~~~~key~~~");
+                        return;
+                }
+		startPageOffset = start;
+		endPageOffset   = end;
+
+	        $.ajax({
+                	type: "GET",
+                	url: "/getProducts",
+                	data: { searchkey: searchkey, start:start, end:end}
+        	})
+		.done(function(data){
+			cb(data);
+		});
+	};//END of ajaxLoadData
+
+	
+	//分页逻辑实现
+	var renderPages = function(){
+		var pages = Math.floor(products.length/20)+1;
+		var pagesArray = [];
+		    console.log("length:",products.length);
+
+		    for(var j=1;j<=pages;j++){
+			pagesArray.push({page:j});
+		    }
+
+		    console.log("pages:",pagesArray);
+		var t =$("#pagesArrayTemplate").render(pagesArray);
+                       $(".y_page").html(t);
+	};//END of renderPages.....
+
+
+	//新加的搜索逻辑=======================================================
 	$(".search_button").click(function(){
 		var searchkey = $(".search_text").val();
 		console.log(searchkey);
@@ -2309,27 +2378,27 @@ $(function(){
 			alert("error~~~~key~~~");
 			return;
 		}
-        	$.ajax({
-                	type: "GET",
-                	url: "/getProducts",
-                	data: { searchkey: searchkey }
-        	})
-        	.done(function( msg ) {
+		ajaxLoadData(0,20,function( msg ) {
 			//console.log(msg);
 			products = msg;
-			var t =$("#productTemplate").render(msg);
-			//console.log(t);
-                	$("#productsList").html(t);
-        	});
-	});//END of search_button click
+			render(msg);
+	});
 
+	});//END of search_button click
+	
+	//排序逻辑===============================================================
 	var sortArray = function(parray,sortsub){
-  		return parray.sort(sortsub);
+  		products = parray.sort(sortsub);
+		return products;
 	};
 
 	var render    = function(sorted_products){
-        	var t =$("#productTemplate").render(sorted_products);
+        	var t =$("#productTemplate").render(sorted_products.slice(0,20));
               	       $("#productsList").html(t);
+			setTimeout(function(){
+				renderPages();
+			},1500);
+        
 	};
 
 	$("#defaultSort").click(function(){
