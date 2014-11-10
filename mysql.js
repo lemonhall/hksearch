@@ -56,6 +56,7 @@ var getProducts = function(queryParams,queryCb){
 	});//END of get from cache...
 }//END of getProducts;
 
+
 var selectSQL_details = "select * from templateblobfield where PRODUCT_ID='002a41857'";
 
 var getProductDetails = function(queryCb){
@@ -72,6 +73,7 @@ var getProductDetails = function(queryCb){
                         });
         });
 }//END of getProducts;
+
 module.exports.getProducts		=  getProducts;
 module.exports.getProductDetails	=  getProductDetails;
 

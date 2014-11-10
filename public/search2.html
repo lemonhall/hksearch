@@ -2067,11 +2067,11 @@ function check_validate1(value){
 <input type="hidden" name="currentPageNo" value="1">
 <input type="hidden" name="tag" value="">
 <div class="y_lbpxlt">
-<a href="javascript:void(0)" class="y_cur">默认排序<s></s></a>
-<a href="javascript:subByOrder('6');">人气<s></s></a>
-<a href="javascript:subByOrder('5');">人气<s class="up"></s></a>
-<a href="javascript:subByOrder('2');">价格<s></s></a>
-<a href="javascript:subByOrder('1');">价格<s class="up"></s></a>
+<a id='defaultSort' class="y_cur">默认排序<s></s></a>
+<a id='sortByVisit_count_desc' style="hover{cursor:pointer}">人气<s></s></a>
+<a id="sortByVisit_count_asc">人气<s class="up"></s></a>
+<a id="sortByUnit_price_desc">价格<s></s></a>
+<a id="sortByUnit_price_asc">价格<s class="up"></s></a>
 <a href="javascript:subByViewType('list');" class="y_lb">列表<s></s></a>
 <a href="javascript:void(0)" class="y_dt y_cur">大图<s></s></a>
 </div>
@@ -2284,20 +2284,14 @@ $(function(){
 </li>
 </script>
 <script type="text/javascript">
-	var products = [
-			{ PRODUCT_NAME: '健司KENJI 健康时刻瑞士高山牛乳脆片  160g',
-			  UNIT_PRICE: 12.9,
-			  LIST_PRICE: 22,
-			  APP_USERCOUNT: 0,
-			  VISITCOUNT: 0,
-			  PRODUCT_ID: '002a41857' }
-	];
+	var products = [];
 	$.ajax({
   		type: "GET",
   		url: "/getProducts",
   		data: { name: "John", location: "Boston" }
 	})
   	.done(function( msg ) {
+		products = msg;
 		$("#productsList").html($("#productTemplate").render(msg));
   	});
 	//处理搜索框的按键事件
@@ -2321,12 +2315,63 @@ $(function(){
                 	data: { searchkey: searchkey }
         	})
         	.done(function( msg ) {
-			console.log(msg);
+			//console.log(msg);
+			products = msg;
 			var t =$("#productTemplate").render(msg);
 			//console.log(t);
                 	$("#productsList").html(t);
         	});
 	});//END of search_button click
+
+	var sortArray = function(parray,sortsub){
+  		return parray.sort(sortsub);
+	};
+
+	var render    = function(sorted_products){
+        	var t =$("#productTemplate").render(sorted_products);
+              	       $("#productsList").html(t);
+	};
+
+	$("#defaultSort").click(function(){
+
+	});
+
+	$("#sortByVisit_count_desc").click(function(){
+        	render(sortArray(products,function(a,b){
+            		if (b.VISITCOUNT < a.VISITCOUNT)
+     				return -1;
+  			if (b.VISITCOUNT > a.VISITCOUNT)
+    				return 1;
+  			return 0;
+        	}));
+	});
+	$("#sortByVisit_count_asc").click(function(){
+        	render(sortArray(products,function(a,b){
+             		if (a.VISITCOUNT < b.VISITCOUNT)
+     				return -1;
+  			if (a.VISITCOUNT > b.VISITCOUNT)
+    				return 1;
+  			return 0;
+        	}));  
+	});
+	$("#sortByUnit_price_desc").click(function(){
+        	render(sortArray(products,function(a,b){
+              		if (b.UNIT_PRICE < a.UNIT_PRICE)
+     				return -1;
+  			if (b.UNIT_PRICE > a.UNIT_PRICE)
+    				return 1;
+  			return 0;
+        	}));
+	});
+	$("#sortByUnit_price_asc").click(function(){
+        	render(sortArray(products,function(a,b){
+              		if (a.UNIT_PRICE < b.UNIT_PRICE)
+     				return -1;
+  			if (a.UNIT_PRICE > b.UNIT_PRICE)
+    				return 1;
+  			return 0;
+        	}));
+	});
 </script>
 
 </body>

@@ -17,11 +17,14 @@ app.get("/",function(req,res){
 
 app.get("/getProducts",function(req,res){
 	console.log(req.query);
-	var searchkey = req.query.searchkey;
+	var searchkey = req.query.searchkey || "";
+	var start     = req.query.start     || 0;
+	var end       = req.query.end       || 20;
+	
 	if(searchkey ==="" || searchkey === undefined){
 		res.send("");
 	}else{
-		mysql.getProducts({searchkey:searchkey,start:0,end:20},function(result){
+		mysql.getProducts({searchkey:searchkey,start:start,end:end},function(result){
 			res.send(result);
 		});
 	}
