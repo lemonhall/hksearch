@@ -129,7 +129,6 @@
      	 </div>
 </div>
 
-</div></div>
 
  <script>
 	//初始化头部
@@ -2072,7 +2071,9 @@ function check_validate1(value){
 <a id="sortByVisit_count_asc">人气<s class="up"></s></a>
 <a id="sortByUnit_price_desc">价格<s></s></a>
 <a id="sortByUnit_price_asc">价格<s class="up"></s></a>
+<!--
 <a href="javascript:subByViewType('list');" class="y_lb">列表<s></s></a>
+-->
 <a href="javascript:void(0)" class="y_dt y_cur">大图<s></s></a>
 </div>
 <div class="y_lblist">
@@ -2084,14 +2085,6 @@ function check_validate1(value){
 <div class="y_listpg">
 <!--翻页-->
 <div class="y_page">
-<a href="javascript:void(0)" class="y_prev"> 上一页</a>
-<a href="javascript:void(0)" class="cur">1</a>
-<a href="javascript:jumpPage('2');">2</a>
-<a href="javascript:jumpPage('3');">3</a>
-<a href="javascript:jumpPage('2');" class="y_next">下一页 </a>
-<span class="y_mr10">共3页</span>到第
-<input name="jumpPages" type="text" class="y_pgtxt" onkeyup="this.value=this.value.replace(/\D/g,&#39;&#39;)" onafterpaste="this.value=this.value.replace(/\D/g,&#39;&#39;)" value="1">页
-<a href="javascript:jumpPageByNum('3');" class="y_pgtn">确定</a>
 </div>
 </div>
 </form></div>
@@ -2302,8 +2295,9 @@ $(function(){
 	    while (match = search.exec(query))
 	       urlParams[decode(match[1])] = decode(match[2]);
 	})();
-	if(urlParams.key){
-		var searchkey = $(".search_text").val(urlParams.key);
+	if(urlParams.key!="undefined"){
+		var key       = urlParams.key;	
+		var searchkey = $(".search_text").val(key);
 		setTimeout(function(){	
 			$(".search_button").trigger("click");
 		},100);
@@ -2358,13 +2352,13 @@ $(function(){
 	var renderPages = function(){
 		var pages = Math.floor(products.length/20)+1;
 		var pagesArray = [];
-		    console.log("length:",products.length);
+		    //console.log("length:",products.length);
 
 		    for(var j=1;j<=pages;j++){
 			pagesArray.push({page:j});
 		    }
 
-		    console.log("pages:",pagesArray);
+		    //console.log("pages:",pagesArray);
 		var t =$("#pagesArrayTemplate").render(pagesArray);
                        $(".y_page").html(t);
 	};//END of renderPages.....
@@ -2373,7 +2367,7 @@ $(function(){
 	//新加的搜索逻辑=======================================================
 	$(".search_button").click(function(){
 		var searchkey = $(".search_text").val();
-		console.log(searchkey);
+		//console.log(searchkey);
 		if(searchkey === "请输入搜索关键字"){
 			alert("error~~~~key~~~");
 			return;

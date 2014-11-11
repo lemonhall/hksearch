@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<!-- saved from url=(0109)http://test.sfheike.com/pad/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&key=%B4%F3%C3%D7 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=GBK">
+	
+	
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="MobileOptimized" content="1024">
+	<meta name="format-detection" content="telephone=no">
+	<title>嘿客-首页</title>
+	<meta name="keywords" content="嘿客-频道关键字">
+	<meta name="description" content="首页频道描述">
+	<link rel="Shortcut Icon" href="http://test.sfheike.com/favicon.ico">
+	
+ 	
+ 	<link href="./padsearch_files/global.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
+ 	<link href="./padsearch_files/channel.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
+ 
+ 	
+ 	<script type="text/javascript" src="./padsearch_files/jquery-1.10.2.min.js"></script><style type="text/css"></style>
+ 	<script type="text/javascript" src="./padsearch_files/jquery.DOMWindow.js"></script>
+ 	<script type="text/javascript" src="./padsearch_files/html5.js"></script>
+ 	<script type="text/javascript" src="./padsearch_files/jquery.scrollLoading-min.js"></script>
+</head>
+<body style="">	
+	
+	
+ <div class="header"> 
+	 
+	 
+
+
+
+
+
+
+
+ 
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+<form name="userloginForm" method="POST" action="http://test.sfheike.com/pad/fg/user/user.do" onsubmit="return login()" target="_top">
+	<input type="hidden" name="channelId" value="index">
+	<input type="hidden" name="actionType" value="gologin">
+	<input type="hidden" name="requestPageUrl" value="%2Fpad%2Fdecorator%2FpageDecorator.jsp%3FactionType%3Dqiantailist%26type%3Dp%26xz%3Dp%26key%3D%25B4%25F3%25C3%25D7">
+	<input type="hidden" name="noValidateCode" value="noValidateCode">
+	<input type="hidden" name="userType">
+</form>
+
+<header class="y_header">
+		  <nav>
+  		<span class="y_navmeb"></span>
+  		
+    						<a href="http://test.sfheike.com/pad/find.htm">新发现</a>
+      
+        
+      
+		  <div class="y_topopbx" id="user1">
+
+
+
+
+
+
+
+ 
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<a href="http://test.sfheike.com/pad/fg/order/nomalorder/cart.do?actionType=list&treeshow=true"><b></b>购物车</a>
+
+  <a class="y_tpmeb" href="http://test.sfheike.com/pad/fg/user/poplogin.ftl" id="login"><b></b>登录</a>
+     <a class="y_tpmeb2" href="http://test.sfheike.com/pad/fg/user/userreg.do?actionType=regsetp1"><b></b>注册</a>
+
+
+
+<script>
+$(document).ready(function(){
+		  $('#login').openDOMWindow({
+				height:341,
+				positionTop:-10,
+				width:400,
+				borderColor:'#393939',
+				borderSize:'1',		
+				eventType:'click',
+				positionType:'centered',
+				anchoredClassName:'absoluteIframeDOMWindow',	
+				anchoredSelector:'.absoluteIframeDOMWindow',
+				positionLeft:-20,
+				windowSource:'iframe',
+				overlay:1,
+				overlayColor:'#000',
+				overlayOpacity:'60',
+				windowPadding:0
+			  });
+	 });			
+</script>
+</div>
+		  <script>
+		      $("#user1").load("/pad/ftl_lib/fg/user/user_top1.jsp",{ranNum:Math.random()} ) ;
+		  </script>
+		  <b></b>
+    	</nav>
+    	<h1><a href="http://test.sfheike.com/pad/"><img src="./padsearch_files/y_logo.jpg"></a></h1>
+    	<div class="y_serch">
+				<input type="text" name="curProductkey" onkeydown="javascript:if(event.keyCode==13) return searchSubmitForm();">
+				<a href="javascript:searchSubmitForm()"></a>
+		  </div>
+		  <div id="user">
+
+
+
+
+
+
+
+ 
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+		  <script>
+		      $("#user").load("/pad/ftl_lib/fg/user/user_top.jsp",{ranNum:Math.random()} ) ;
+		  </script>
+
+</header>
+
+<script>
+	function searchSubmitForm(){
+		  var searchUrl = "/pad/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&key=";
+		  
+		  if((document.getElementsByName("curProductkey")[0].value)==""){
+				alert("请输入搜索关键字");
+				document.getElementsByName("curProductkey")[0].value == "";
+				document.getElementsByName("curProductkey")[0].focus();
+				return;
+			}
+			
+			if((document.getElementsByName("curProductkey")[0].value).length >20) {
+				alert("您输入的关键字过长，请控制在20个字以内.");
+				document.getElementsByName("curProductkey")[0].focus();
+				return;
+			}
+			
+			var keys =document.getElementsByName("curProductkey")[0].value;
+			this.location =searchUrl + keys;
+			
+		}
+		
+		function logout1() {
+			window.location.href="/pad/fg/user/user.do?actionType=logout" ;
+		}
+	
+	function gologin() {
+		window.location.href="/pad/fg/user/user.do?actionType=gologin&requestPageUrl="+encodeURIComponent(window.top.location)+"&noValidateCode=noValidateCode&userType=user";
+	}
+</script>
+
+<script>
+  $(function(){
+	  	//头部 购物车和个人中心下拉框
+	    $(".y_header .y_navmeb").click(function(){
+	      $(this).siblings(".y_topopbx").slideToggle();
+	      $(document).one("click", function () {
+		    	$(".y_topopbx").hide();
+		  });
+	    })
+			$(".y_topopbx,.y_header .y_navmeb").click(function (event) {
+			    event.stopPropagation();//在Div区域内的点击事件阻止冒泡到document
+			});
+
+	  })	
+</script>
+
+
+    
+    	
+        
+       	  
+        
+      
+    
+ </div>
+ 
+<form name="fgProductSearchForm" method="post" action="http://test.sfheike.com/pad/fg/product/fgproductSearch.do"> <input type="hidden" name="actionType" value="qiantailist">
+<input type="hidden" name="order" value="">
+<input type="hidden" name="type" value="p">
+<input type="hidden" name="xz" value="p">
+<input type="hidden" name="key" value="大米">
+<input type="hidden" name="viewType" value="">
+<input type="hidden" name="currentPageNo" value="1">
+<input type="hidden" name="tag" value="">
+<!--筛选排序-->
+<nav class="y_fliter">
+<a href="javascript:void(0)" class="y_cur">默认</a>
+<a href="javascript:subByOrder('2')" class="y_price">价格<b></b></a><!--价格a标签的类：y_price价格默认排序，y_pricetop价格由低到高排序，y_pricebot价格由高到低排序-->
+<a href="javascript:subByOrder('8');" class="y_pxnorml">销量<b></b></a>
+<a href="javascript:subByOrder('6');" class="y_pxnorml">人气<b></b></a>
+</nav>
+<section class="y_productlt">
+<ul id="content">
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_k1gg1699.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141013/small/small_big_1409297430796_1413212517327_1413212517933.jpg" src="./padsearch_files/small_big_1409297430796_1413212517327_1413212517933.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_k1gg1699.htm" target="_blank">先农氏 响水福米 5kg</a></h2>
+<p>响水米业为先农氏独家特供～～～</p>
+<div class="y_price">￥<b>75.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_0epr12915.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415180513327_1415180521721.jpg" src="./padsearch_files/1415180513327_1415180521721.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_0epr12915.htm" target="_blank">品道 有机大米纸袋装 5kg</a></h2>
+<p>品道 有机大米纸袋装 5kg</p>
+<div class="y_price">￥<b>69.90</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_aob93552.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415187342416_1415187356563.jpg" src="./padsearch_files/1415187342416_1415187356563.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_aob93552.htm" target="_blank">北大荒 五常稻花香米 5kg </a></h2>
+<p>安心大米首选，产地五常，产品清香四溢、颗粒饱满、晶莹润泽、筋糯宜口。
+</p>
+<div class="y_price">￥<b>89.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_zmcq19031.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141015/small/small_1413371088136.jpg" src="./padsearch_files/small_1413371088136.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_zmcq19031.htm" target="_blank">美国嘉宝Gerber2段混合水果大米米粉227g（海外版）</a></h2>
+<p>美国嘉宝Gerber2段混合水果大米米粉,含有VitaBlocks ,富含婴幼儿所需的铁、锌元素及6种B族维生素。
+</p>
+<div class="y_price">￥<b>46.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_vbkc5942.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140919/small/small_1411100743228.jpg" src="./padsearch_files/small_1411100743228.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_vbkc5942.htm" target="_blank">两盒套装德国喜宝Hipp有机免敏纯大米米粉400g</a></h2>
+<p>德国喜宝Hipp有机免敏纯大米米粉100%有机稻米制作，单纯保留食材原始味道，让宝宝摄取最天然的营养而不会造成宝宝肠胃负担，口味自然纯正。</p>
+<div class="y_price">￥<b>158.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_pf0d5462.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140915/small/small_1410766518833.jpg" src="./padsearch_files/small_1410766518833.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_pf0d5462.htm" target="_blank">美国世界最好Earth's Best高铁婴儿大米米粉227g</a></h2>
+<p>美国世界最好Earth's Best高铁婴儿大米米粉美国农业部严格认证，不使用农药、化肥、转基因作物。采用天然有机糙米，含有多种矿物质和维生素。铁加强配方，特别加入电解铁，更易吸收利用。不添加盐和糖。不含人工香料、色素及防腐剂。</p>
+<div class="y_price">￥<b>207.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_hxl192.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140726/small/small_1406346676857.jpg" src="./padsearch_files/small_1406346676857.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_hxl192.htm" target="_blank">美国世界最好高铁婴儿大米米粉1段227g</a></h2>
+<p>世界最好Earth's Best高铁婴儿大米米粉1段高铁配方，尤其适合4-6月龄宝宝对铁元素的需求，为预防宝宝缺铁做足了准备。最重要的是，由于不添加DHA等物质，对敏感宝宝来说，避免了最细微的过敏可能，世界最好米粉是健康宝宝初次添加辅食的好选择之一！</p>
+<div class="y_price">￥<b>54.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_gcgn5866.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140918/small/small_1411035164560.jpg" src="./padsearch_files/small_1411035164560.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_gcgn5866.htm" target="_blank">德国喜宝Hipp有机苹果葡萄大米泥4个月以上 190g</a></h2>
+<p>德国喜宝Hipp有机苹果葡萄大米泥富含粗纤维，促进肠胃蠕动，减少有害物质对皮肤的危害，含有大量的镁、硫、铁，铜、碘、锰、锌等微量元素，使皮肤细腻、红润有光泽。葡萄中的多量果酸有助于消化，健脾和胃。</p>
+<div class="y_price">￥<b>33.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_dytf498.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140726/small/small_1406364436105.jpg" src="./padsearch_files/small_1406364436105.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_dytf498.htm" target="_blank">德国喜宝Hipp有机免敏纯大米米粉400g</a></h2>
+<p>德国喜宝Hipp有机免敏纯大米米粉400g 产品规格：400克
+适合人群：4个月以上宝宝。
+</p>
+<div class="y_price">￥<b>79.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_or5k33185.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415187656055_1415187670893.jpg" src="./padsearch_files/1415187656055_1415187670893.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_or5k33185.htm" target="_blank">十月稻田 有机大米 5kg</a></h2>
+<p>有机大米</p>
+<div class="y_price">￥<b>59.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_ay5y5941.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140919/small/small_1411100052297.jpg" src="./padsearch_files/small_1411100052297.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_ay5y5941.htm" target="_blank">德国喜宝Hipp有机免敏纯大米米粉400g</a></h2>
+<p>德国喜宝Hipp有机免敏纯大米米粉100%有机稻米制作，单纯保留食材原始味道，让宝宝摄取最天然的营养而不会造成宝宝肠胃负担，口味自然纯正。</p>
+<div class="y_price">￥<b>81.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_6gzz1259.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415183835645_1415183847123.jpg" src="./padsearch_files/1415183835645_1415183847123.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_6gzz1259.htm" target="_blank">七河源 五星越光白雪米 3.5kg </a></h2>
+<p>口感黏而不腻，味道醇香，绵软有弹性
+</p>
+<div class="y_price">￥<b>36.80</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_a5zg4641.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141101/small/small_big_1410426640217_1414774346385_1414774346830.jpg" src="./padsearch_files/small_big_1410426640217_1414774346385_1414774346830.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_a5zg4641.htm" target="_blank">德国喜宝Hipp有机免敏纯大米米粉400g No.2920（海外版）</a></h2>
+<p>德国喜宝Hipp有机免敏纯大米米粉100%天然有机，抗敏保证！单纯保留食材最原始的味道，口感自然美味香浓，绝无任何人工添加香料、色素及化学成份的营养素，喜宝的天然美食给宝宝满满的爱与呵护。</p>
+<div class="y_price">￥<b>81.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_2vgt19784.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141018/small/small_1413622618310.jpg" src="./padsearch_files/small_1413622618310.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_2vgt19784.htm" target="_blank">美国Gerber1段大米米粉米糊含DHA益生菌227g</a></h2>
+<p>美国Gerber1段大米米粉米糊含DHA益生菌给孩子好的成长。</p>
+<div class="y_price">￥<b>46.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_03z57068.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140925/small/small_1411619387649.jpg" src="./padsearch_files/small_1411619387649.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_03z57068.htm" target="_blank">菲诗小铺大米调理水</a></h2>
+<p>菲诗小铺大米调理水收毛孔调理毛孔的同时温和补水, 在维持皮肤屏障功能方面起着十分重要作用，同时可显著增强角化细胞之间粘着力，改善皮肤干燥程度；同时菲诗小铺大米调理水使用神经酰胺能使表皮角质层中神经酰胺含量增高，可改善皮肤干燥、粗糙等状况。</p>
+<div class="y_price">￥<b>39.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_ctz337131.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415186310721_1415186323961.jpg" src="./padsearch_files/1415186310721_1415186323961.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_ctz337131.htm" target="_blank">裕道府 有机大米 500g</a></h2>
+<p>裕道府 有机大米 500g</p>
+<div class="y_price">￥<b>16.80</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_tmbb1257.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415182055117_1415182064533.jpg" src="./padsearch_files/1415182055117_1415182064533.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_tmbb1257.htm" target="_blank">和耕 生态稻米 2.5kg </a></h2>
+<p>老少皆宜，营养均衡
+</p>
+<div class="y_price">￥<b>35.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_mgma74220.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415182572020_1415182582346.jpg" src="./padsearch_files/1415182572020_1415182582346.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_mgma74220.htm" target="_blank">大和恒 稻花香二号大米 2.5kg</a></h2>
+<p>大和恒 稻花香二号大米 5kg</p>
+<div class="y_price">￥<b>45.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_uc1z1261.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415180522422_1415180530833.jpg" src="./padsearch_files/1415180522422_1415180530833.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_uc1z1261.htm" target="_blank">品道 有机大米塑袋装 5kg </a></h2>
+<p>天然、无污染、零化肥、零农药，安全营养
+</p>
+<div class="y_price">￥<b>78.00</b></div>
+</div>
+</li>
+<!--列表-->
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_h0i21683.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141024/small/small_1414134999723.jpg" src="./padsearch_files/small_1414134999723.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_h0i21683.htm" target="_blank">顺丰包邮！先农氏 糙米·响水大米 2.5kg</a></h2>
+<p>会发芽的活米～～</p>
+<div class="y_price">￥<b>80.00</b></div>
+</div>
+</li>
+<li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_0eoy42460.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415184586827_1415184598989.jpg" src="./padsearch_files/1415184586827_1415184598989.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_0eoy42460.htm" target="_blank">裕道府 五常有机大米 1.5kg</a></h2>
+<p>裕道府 五常有机大米 1.5kg</p>
+<div class="y_price">￥<b>58.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_g95a40157.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415185335309_1415185347710.jpg" src="./padsearch_files/1415185335309_1415185347710.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_g95a40157.htm" target="_blank">绿之源农庄 有机大米 2.5kg</a></h2>
+<p>绿之源农庄 有机大米 2.5kg</p>
+<div class="y_price">￥<b>35.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_mgh737129.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415186295797_1415186309439.jpg" src="./padsearch_files/1415186295797_1415186309439.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_mgh737129.htm" target="_blank">裕道府 五常生态大米 350g</a></h2>
+<p>裕道府 五常生态大米 350g</p>
+<div class="y_price">￥<b>5.90</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_pl6v37128.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415186288697_1415186302300.jpg" src="./padsearch_files/1415186288697_1415186302300.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_pl6v37128.htm" target="_blank">裕道府 五常生态大米 3kg</a></h2>
+<p>裕道府 五常生态大米 3kg</p>
+<div class="y_price">￥<b>59.90</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_ghhx10906.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415181717719_1415181726833.jpg" src="./padsearch_files/1415181717719_1415181726833.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_ghhx10906.htm" target="_blank">品道 有机大米(纸袋) 2.5kg</a></h2>
+<p>品道 有机大米(纸袋) 2.5kg</p>
+<div class="y_price">￥<b>35.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_8obc28133.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141105/small/1415183861051_1415183872552.jpg" src="./padsearch_files/1415183861051_1415183872552.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_8obc28133.htm" target="_blank">七河源 稻花香大米 5kg</a></h2>
+<p></p>
+<div class="y_price">￥<b>68.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_n1g513095.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141011/small/1413023927953_1413023927938.jpg" src="./padsearch_files/1413023927953_1413023927938.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_n1g513095.htm" target="_blank">北大荒绿野 有机长粒香大米 2.5kg</a></h2>
+<p>北大荒绿野 有机长粒香大米 2.5kg</p>
+<div class="y_price">￥<b>44.90</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_b4rr1701.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140829/small/small_1409297257008.jpg" src="./padsearch_files/small_1409297257008.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_b4rr1701.htm" target="_blank">顺丰包邮！先农氏 响水有机米 2.5kg</a></h2>
+<p>健康的，有机的，完全采用自然农耕法种植的大米～～～</p>
+<div class="y_price">￥<b>98.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_tyqu1371.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140728/small/small_1406547248357.jpg" src="./padsearch_files/small_1406547248357.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_tyqu1371.htm" target="_blank">东北黑龙江大米|盛禧顶级小珍珠米|特级大米 4.25KG</a></h2>
+<p></p>
+<div class="y_price">￥<b>33.50</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_wv1e19032.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141015/small/small_1413371299320.jpg" src="./padsearch_files/small_1413371299320.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_wv1e19032.htm" target="_blank">美国嘉宝Gerber2段混合水果大米米粉227g（海外版）</a></h2>
+<p>美国嘉宝Gerber2段混合水果大米米粉,含有VitaBlocks ,富含婴幼儿所需的铁、锌元素及6种B族维生素。
+</p>
+<div class="y_price">￥<b>179.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_miki5852.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140918/small/small_1411030668220.jpg" src="./padsearch_files/small_1411030668220.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_miki5852.htm" target="_blank">两瓶套装德国喜宝Hipp有机苹果葡萄大米泥4个月以上 190g</a></h2>
+<p>德国喜宝Hipp有机苹果葡萄大米泥富含粗纤维，促进肠胃蠕动，减少有害物质对皮肤的危害，含有大量的镁、硫、铁，铜、碘、锰、锌等微量元素，使皮肤细腻、红润有光泽。葡萄中的多量果酸有助于消化，健脾和胃。
+</p>
+<div class="y_price">￥<b>64.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_crgq18635.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141014/small/small_1413276201482.jpg" src="./padsearch_files/small_1413276201482.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_crgq18635.htm" target="_blank">美国嘉宝Gerber1段（4-6个月）大米米粉227g</a></h2>
+<p>美国嘉宝Gerber1段（4-6个月）大米米粉1、美国儿科医生推荐产品；2、美国原装进口高铁米粉 富含钙铁锌；
+</p>
+<div class="y_price">￥<b>46.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_wf751697.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141013/small/small_big_1409297605968_1413212534773_1413212535178.jpg" src="./padsearch_files/small_big_1409297605968_1413212534773_1413212535178.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_wf751697.htm" target="_blank">先农氏 泰国茉莉香米 5kg</a></h2>
+<p>泰国香米，香味浓郁，口感饱满～～～</p>
+<div class="y_price">￥<b>96.80</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_kql117279.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141011/small/small_1413012951441.jpg" src="./padsearch_files/small_1413012951441.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_kql117279.htm" target="_blank">菲诗小铺The Face Shop迪肤适米水亮白清洁乳液 200ml</a></h2>
+<p>“米水清洁成分焕发肌肤活力“，源自朝鲜宫廷女子所用的传统米水配方，并添加辣木油，深层清洁肌肤，轻松卸妆，并能焕发肌肤活力。</p>
+<div class="y_price">￥<b>49.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_3g4c1668.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141013/small/small_big_1409294758506_1413211874116_1413211874633.jpg" src="./padsearch_files/small_big_1409294758506_1413211874116_1413211874633.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_3g4c1668.htm" target="_blank">先农氏 分度米·稻花香大米 1kg</a></h2>
+<p>新鲜的胚芽米，可以选的胚芽米～～～</p>
+<div class="y_price">￥<b>19.80</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_rg9618638.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141014/small/small_1413276479248.jpg" src="./padsearch_files/small_1413276479248.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_rg9618638.htm" target="_blank">美国嘉宝Gerber1段大米米粉227g</a></h2>
+<p>美国嘉宝Gerber1段（4-6个月）大米米粉1、美国儿科医生推荐产品；2、美国原装进口高铁米粉 富含钙铁锌；</p>
+<div class="y_price">￥<b>179.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_s2735804.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140918/small/small_1411007834148.jpg" src="./padsearch_files/small_1411007834148.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_s2735804.htm" target="_blank">美国本土嘉宝DHA大米米粉1段 Gerber（4个月以上）227g</a></h2>
+<p>美国嘉宝DHA大米米粉是4个月以上能辅助坐立的宝宝的辅食食物。米粉里添加了可以帮助宝宝成长发育的VitaBlocks营养混合物。</p>
+<div class="y_price">￥<b>51.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_ta2k7991.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140929/small/small_1411975855947.jpg" src="./padsearch_files/small_1411975855947.jpg"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_ta2k7991.htm" target="_blank">菲诗小铺The Face Shop大米调理乳液 150ml</a></h2>
+<p>前所未有的明亮，不可思议的剔透，运用崭新科技操控光线，重新开发“光之力量”拥有超凡卓越的亮白以及重整皮质的效能，致力针对淡化黑斑，雀斑，改善色素分布不均匀的肌肤。</p>
+<div class="y_price">￥<b>39.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_c8895945.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20140919/small/small_1411101190223.jpg" src="./padsearch_files/greypad.gif"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_c8895945.htm" target="_blank">（四盒装）德国喜宝Hipp有机免敏纯大米米粉400g </a></h2>
+<p>德国喜宝Hipp有机免敏纯大米米粉100%有机稻米制作，单纯保留食材原始味道，让宝宝摄取最天然的营养而不会造成宝宝肠胃负担，口味自然纯正。</p>
+<div class="y_price">￥<b>312.00</b></div>
+</div>
+</li><li>
+<div class="y_prolt"><a href="http://test.sfheike.com/pad/p_ptb31662.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/userfiles/product/img/20141013/small/small_big_1409295770708_1413212526321_1413212526755.jpg" src="./padsearch_files/greypad.gif"></a></div>
+<div class="y_prort">
+<h2><a href="http://test.sfheike.com/pad/p_ptb31662.htm" target="_blank">顺丰包邮！先农氏 糙米·响水大米 1kg</a></h2>
+<p>会发芽的活米～～</p>
+<div class="y_price">￥<b>32.00</b></div>
+</div>
+</li></ul>
+</section>
+</form> <script>
+function subByOrder(act){
+document.fgProductSearchForm.order.value=act;
+document.fgProductSearchForm.submit();
+}
+</script>
+<a id="next" href="http://test.sfheike.com/pad/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&order=&key=%B4%F3%C3%D7" style="display: none;"></a>
+<script src="./padsearch_files/jquery.infinitescroll.js"></script>
+<script>
+$(document).ready(function (){
+$('#content').infinitescroll({
+navSelector : "#next",
+nextSelector : "#next",
+itemSelector : "ul li",
+maxPage : '5',
+path: function(index) {
+return "/pad/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&order=&key=大米&page=" + index;
+}
+}, function(newElements, data, url){
+var infscrLoading= document.getElementById("infscr-loading");
+if(infscrLoading!=null){
+infscrLoading.parentNode.removeChild(infscrLoading);
+}
+$("img").scrollLoading();
+});
+});
+</script>
+<script>
+$(function(){
+$("img").scrollLoading();
+})
+</script>
+<script type="text/javascript">
+	$("div:gt(0)").click(function(){
+		$(".y_topopbx").slideUp();
+	});
+</script>
+  
+ 
+
+
+ 
+	
+		
+	
+
+
+
+
+
+
+
+
+
+
+
+
+<div style="display:none">
+  
+	@ 2014 顺丰速运 版权所有   <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备08034243号-22</a>
+<div style="display:none">
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb2a36d59d6e60de826b52b15e79c4a25' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="http://hm.baidu.com/h.js?b2a36d59d6e60de826b52b15e79c4a25" type="text/javascript"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F18583e2eef9bd87b67e38cce0b26ee0e' type='text/javascript'%3E%3C/script%3E"));
+</script><script src="http://hm.baidu.com/h.js?18583e2eef9bd87b67e38cce0b26ee0e" type="text/javascript"></script>
+</div> 
+	  
+</div>
+ 
+
+
+
+
+<embed id="xunlei_com_thunder_helper_plugin_d462f475-c18e-46be-bd10-327458d045bd" type="application/thunder_download_plugin" height="0" width="0"></body></html>

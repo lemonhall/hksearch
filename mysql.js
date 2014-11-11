@@ -11,11 +11,12 @@ var pool = mysql.createPool({
     database: 'heike_product',
     port: 3306
 });
+
 var NodeCache = require( "node-cache" );
 //var myCache = new NodeCache();
 var myCache = new NodeCache( { stdTTL: 100, checkperiod: 120 } );
 
-var selectSQL_product = "select PRODUCT_NAME,UNIT_PRICE,LIST_PRICE,APP_USERCOUNT,VISITCOUNT,PRODUCT_ID,CENTER_PICTURE,SMALL_PICTURE from product where PRODUCT_NAME like ? AND SEARCHKEY like ? AND CHECK_STATUS = 1 AND store_check_status =1 AND uc_activation_status =1 AND uc_status = 1";
+var selectSQL_product = "select PRODUCT_NAME,UNIT_PRICE,LIST_PRICE,APP_USERCOUNT,VISITCOUNT,PRODUCT_ID,CENTER_PICTURE,SMALL_PICTURE from product where PRODUCT_NAME like ? OR SEARCHKEY like ? AND CHECK_STATUS = 1 AND store_check_status =1 AND uc_activation_status =1 AND uc_status = 1";
 
 function isEmpty(obj){
     for (var name in obj){

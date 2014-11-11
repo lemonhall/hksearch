@@ -1,0 +1,66 @@
+/*全局变量*/
+body {margin:0px;padding:0px;color:#787878;font-size:31.25%;font-family:"Hiragino Sans GB",Tahoma,sans-serif;background-color:#fff;}
+.bgef{background-color:#efefef}
+h1,h2,h3,h4,h5,h6,p,form,ul,li,ol,dl,dt,dd,input,textarea,form{ margin:0px; padding:0px;font-size:1em;}
+a{color:#353535;text-decoration:none;outline:none;}
+a:active{color:#bb2434}
+a:hover{color:#bb2434;text-decoration:underline;}
+ul,ol,dl{list-style:none;}
+img{border:none;vertical-align:top;max-width:100%;}
+input,button,select,textarea{outline:none;font-family:"Hiragino Sans GB",sans-serif;}
+textarea{resize:none}
+
+.fl{float:left;}
+.fr{float:right;}
+.clear{zoom:1}
+.clear:after{content:".";display:block;height:0;visibility:hidden;clear:both;}
+.y_hidden{width:100%;overflow:hidden}
+.y_content{width:93.75%;margin:0 auto;}
+.y_100{width:100%;}
+.y_none{display:none;}
+.f_bb24{color:#bb2434}
+#DOMWindow{-moz-border-radius:3px; -webkit-border-radius:3px; border-radius:3px;}
+header,section,hgroup,nav{display:block;}
+.sbym{ width:100%; overflow:hidden; height:640px; background:#efefef;text-align: center;}
+
+/*顺丰ipad头部 css*/
+.y_header{width:100%;height:44px;background:#121212;position:relative;}
+.y_header nav{float:left;font-size:3.2em;color:#d4d4d4;line-height:44px;font-weight:normal;width:55%;position:relative;}
+.y_header nav a,.y_header nav .y_navmeb{float:left;color:#d4d4d4;margin-right:7%;cursor:pointer}
+.y_header nav .y_navmeb{width:23px;height:23px;margin:10px 9% 0 3.6%;background:url(../images/y_topbg.gif) no-repeat;}
+.y_header h1{position:absolute;width:150px;height:34px;overflow:hidden;text-align:center;left:50%;top:5px;margin-left:-75px;}
+.y_header .y_serch{float:right;width:24%;margin:7px 1.2% 0 0;height:30px;background:#d4d4d4;border-radius:5px;}
+.y_header .y_serch input{float:left;width:82%;height:24px;padding:3px 0 3px 2%;font-size:3.2em;border:none;background:none;font-family:"Hiragino Sans GB"}
+.y_header .y_serch a{float:right;width:20px;height:20px;margin:5px 3% 0 0;background:url(../images/y_topbg.gif) 0 -23px no-repeat}
+.y_header .y_topopbx{position:absolute;left:3%;top:44px;width:138px;background:#121212;box-shadow:0 0 8px rgba(0,0,0,0.5);overflow:hidden;display:none;z-index:9999}
+.y_header .y_topopbx a{display:block;height:45px;line-height:45px;padding-left:19px;float:none;margin:-1px 0 0 0;background:url(../images/y_topad.gif) center top no-repeat}
+.y_header .y_topopbx a:hover{color:#fff;background-color:#000;}
+.y_header .y_topopbx a b{display:inline-block;vertical-align:middle;width:20px;height:20px;margin:-3px 10px 0 0;background:url(../images/y_topop.png) no-repeat}
+.y_header .y_topopbx .y_tpmeb b{background-position:0 -20px;}
+.y_header .y_topopbx .y_tpmeb1 b{background-position:0 -42px;}
+.y_header .y_topopbx .y_tpmeb2 b{background-position:2px -60px;}
+/*顺丰ipad按钮 css*/
+.q_al{display: inline-block; height:50px; padding:0 5%; background:#bb2434; line-height:50px; text-align:center; color:#fff; border-radius:3px 3px 3px 3px;  text-decoration:none;transition:all 0.5s;}
+.q_al:hover{text-decoration:none;color:#fff;background:#9e1221;box-shadow: 0 1px 5px rgba(34,25,25,1);-moz-box-shadow: 0 1px 5px rgba(34,25,25,1);-webkit-box-shadow: 0 1px 5px rgba(34,25,25,1);}
+.q_al1{display: inline-block; height:50px; padding:0 5%; background:#aeaeae; line-height:50px; text-align:center; color:#fff; border-radius:3px 3px 3px 3px;  text-decoration:none;transition:all 0.5s;}
+.q_al1:hover{ color:#fff; text-decoration:none; background:#8e8c8c;box-shadow: 0 1px 5px rgba(34,25,25,1);-moz-box-shadow: 0 1px 5px rgba(34,25,25,1);-webkit-box-shadow: 0 1px 5px rgba(34,25,25,1); }
+.q_al2{display: inline-block; height:48px; padding:0 5%; background:#efefef; line-height:48px; text-align:center; color:#fff; border-radius:3px 3px 3px 3px;  text-decoration:none; border:1px solid #d2d2d2; color:#353535;transition:all 0.5s;}
+.q_al2:hover{ color:#353535; text-decoration:none; background:#e3dede; border:1px solid #e3dede; box-shadow: 0 1px 5px rgba(34,25,25,1);-moz-box-shadow: 0 1px 5px rgba(34,25,25,1);-webkit-box-shadow: 0 1px 5px rgba(34,25,25,1);}
+
+/*标题css*/
+.q_gwc{overflow: hidden; zoom:1;width:100%; height:78px; background:#e1e1e1; line-height:78px;  border-top:1px solid #d2d2d2;  border-bottom:1px solid #d2d2d2; font-size:3.6em; color:#787878;  text-decoration:none;}
+.q_gwc .q_fh{float:left; width:23.5%;  padding-left:1.5%;}
+.q_gwc .q_fh b{font-family:"SimSun";  font-size:35px; color:#787878; vertical-align: middle; padding-right:0.7%; font-weight: normal;}
+.q_gwc .q_fh a{ text-decoration:none; color:#787878;  vertical-align: middle; }
+.q_gwc .q_fh a:hover{color:#bb2434}
+.q_gwc .q_gw{float:left; width:50%; color:#353535; font-size:1.33em; text-align:center;}
+.th_qh_tab{width:100%;height:70px;}
+.th_qh_tab li.cur{border-color: #bb2434;color: #bb2434;}
+.th_qh_tab li{width:50%;float: left;font-size: 5.0em;color: #353535;text-align: center;padding: 2% 0 1%;border-bottom: 10px solid #fff;cursor: pointer;font-family: "SimSun";}
+
+.sfind_gwc{width:100%;color:#999; display:block; background:#FFf;border:1px solid #ddd; overflow:hidden; padding:20px 0;-webkit-box-sizing: border-box;}
+.gwc_pic{ width:63px; height:55px; background:url(../images/gwc.jpg) no-repeat; float:left; margin-left:30%}
+.gwc_wz{ float:left; height:55px; line-height:55px; margin:10px 0; text-align:left; text-indent:10px; font-size:4.5em}
+
+
+

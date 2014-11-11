@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<!-- saved from url=(0109)http://test.sfheike.com/pad/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&key=%B4%F3%C3%D7 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+	<meta name="HandheldFriendly" content="true">
+	<meta name="MobileOptimized" content="1024">
+	<meta name="format-detection" content="telephone=no">
+	<title>嘿客-首页</title>
+	<meta name="keywords" content="嘿客-频道关键字">
+	<meta name="description" content="首页频道描述">
+	<link rel="Shortcut Icon" href="http://test.sfheike.com/favicon.ico">
+ 	<link href="./padsearch_files/global.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
+ 	<link href="./padsearch_files/channel.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
+ 	<script type="text/javascript" src="./padsearch_files/jquery-1.10.2.min.js"></script><style type="text/css"></style>
+ 	<script type="text/javascript" src="./padsearch_files/jquery.DOMWindow.js"></script>
+ 	<script type="text/javascript" src="./padsearch_files/html5.js"></script>
+ 	<script type="text/javascript" src="./padsearch_files/jquery.scrollLoading-min.js"></script>
+	<script type="text/javascript" src="./search_files/jsrender.min.js"></script>
+
+</head>
+<body style="">	
+	
+	
+ <div class="header"> 
+	 
+<form name="userloginForm" method="POST" action="http://test.sfheike.com/pad/fg/user/user.do" onsubmit="return login()" target="_top">
+	<input type="hidden" name="channelId" value="index">
+	<input type="hidden" name="actionType" value="gologin">
+	<input type="hidden" name="requestPageUrl" value="%2Fpad%2Fdecorator%2FpageDecorator.jsp%3FactionType%3Dqiantailist%26type%3Dp%26xz%3Dp%26key%3D%25B4%25F3%25C3%25D7">
+	<input type="hidden" name="noValidateCode" value="noValidateCode">
+	<input type="hidden" name="userType">
+</form>
+
+<header class="y_header">
+		  <nav>
+  		<span class="y_navmeb"></span>
+  		
+    						<a href="http://test.sfheike.com/pad/find.htm">新发现</a>
+      
+		  <div class="y_topopbx" id="user1">
+<a href="http://test.sfheike.com/pad/fg/order/nomalorder/cart.do?actionType=list&treeshow=true"><b></b>购物车</a>
+
+  <a class="y_tpmeb" href="http://test.sfheike.com/pad/fg/user/poplogin.ftl" id="login"><b></b>登录</a>
+     <a class="y_tpmeb2" href="http://test.sfheike.com/pad/fg/user/userreg.do?actionType=regsetp1"><b></b>注册</a>
+
+
+
+<script>
+$(document).ready(function(){
+		  $('#login').openDOMWindow({
+				height:341,
+				positionTop:-10,
+				width:400,
+				borderColor:'#393939',
+				borderSize:'1',		
+				eventType:'click',
+				positionType:'centered',
+				anchoredClassName:'absoluteIframeDOMWindow',	
+				anchoredSelector:'.absoluteIframeDOMWindow',
+				positionLeft:-20,
+				windowSource:'iframe',
+				overlay:1,
+				overlayColor:'#000',
+				overlayOpacity:'60',
+				windowPadding:0
+			  });
+	 });			
+</script>
+</div>
+		  <script>
+		      $("#user1").load("/pad/ftl_lib/fg/user/user_top1.jsp",{ranNum:Math.random()} ) ;
+		  </script>
+		  <b></b>
+    	</nav>
+    	<h1><a href="http://test.sfheike.com/pad/"><img src="./padsearch_files/y_logo.jpg"></a></h1>
+    	<div class="y_serch">
+				<input type="text" class="search_text" name="curProductkey"">
+				<a href="#" id="search_button"></a>	
+		  </div>
+		  <div id="user">
+		  </div>
+</header> 
+</div>
+ 
+<!--筛选排序-->
+<nav class="y_fliter">
+<a href="javascript:void(0)" class="y_cur">默认</a>
+<a class="y_price">价格<b></b></a><!--价格a标签的类：y_price价格默认排序，y_pricetop价格由低到高排序，y_pricebot价格由高到低排序-->
+<!-- <a class="y_pxnorml">销量<b></b></a>-->
+<a class="y_pxnorml">人气<b></b></a>
+</nav>
+
+<!--模板目的地-->
+<section class="y_productlt">
+<ul id="content">
+</ul>
+</section>
+
+
+
+
+<!-- Templates -->
+<script id="productTemplate" type="text/x-jsrender">
+<!--列表-->
+<li>
+        <div class="y_prolt"><a href="http://test.sfheike.com/pad/p_{{>PRODUCT_ID}}.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}" src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"></a></div>
+        <div class="y_prort">
+        <h2><a href="http://test.sfheike.com/pad/p_{{>PRODUCT_ID}}.htm" target="_blank">{{>PRODUCT_NAME}}</a></h2>
+                <p>{{>PRODUCT_NAME}}</p>
+        <div class="y_price">￥<b>{{>UNIT_PRICE}}</b></div>
+        </div>
+</li>
+</script>
+
+<script>
+$(document).ready(function (){
+        var products = [];
+        //前端取得searchkey的传参，TODO：需要测试兼容性
+        var urlParams = {};
+        (function () {
+            var match,
+                pl     = /\+/g,  // Regex for replacing addition symbol with a space
+                search = /([^&=]+)=?([^&]*)/g,
+                decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+                query  = window.location.search.substring(1);
+
+            while (match = search.exec(query))
+               urlParams[decode(match[1])] = decode(match[2]);
+        })();
+	if(urlParams.key!="undefined"){
+                var key       = urlParams.key;
+                var searchkey = $(".search_text").val(key);
+
+                setTimeout(function(){
+                        loadPage();
+			
+                },100);
+        }
+	 //处理搜索框的按键事件
+        $(".search_text").keydown(function(event){
+                //console.log(event);
+                if(event.keyCode===13){
+                       loadPage();
+                }
+        });
+        var ajaxLoadData  = function (start,end,cb) {
+                var searchkey = $(".search_text").val();
+                //console.log(searchkey);
+                if(searchkey === "请输入搜索关键字"){
+                        alert("error~~~~key~~~");
+                        return;
+                }
+                startPageOffset = start;
+                endPageOffset   = end;
+
+                $.ajax({
+                        type: "GET",
+                        url: "/getProducts",
+                        data: { searchkey: searchkey, start:start, end:end}
+                })
+                .done(function(data){
+                        cb(data);
+                });
+        };//END of ajaxLoadData
+
+	function loadPage () {
+                var searchkey = $(".search_text").val();
+                //console.log(searchkey);
+                if(searchkey === "请输入搜索关键字"){
+                        alert("error~~~~key~~~");
+                        return;
+                }
+                ajaxLoadData(0,20,function( msg ) {
+                        //console.log(msg);
+                        products = msg;
+                        render(msg);
+        	});
+	};
+
+        var render  = function(sorted_products){
+                var t =$("#productTemplate").render(sorted_products);
+                       $("#content").html(t);
+       };
+
+	$("#search_button").click(function(){
+		loadPage();	
+	});
+
+        //排序逻辑===============================================================
+        var sortArray = function(parray,sortsub){
+                products = parray.sort(sortsub);
+                return products;
+        };
+	var y_price = 0;
+
+	$(".y_price").click(function(){
+		if(y_price===0){
+			y_price = 1;
+			sortByUnit_price_desc();
+		}else{
+			y_price = 0;
+			sortByUnit_price_asc();
+		}		
+	});
+
+	var y_pxnorml = 0;
+
+        $(".y_pxnorml").click(function(){
+                if(y_pxnorml===0){
+                        y_pxnorml = 1;
+                        sortByVisit_count_desc();
+                }else{
+                        y_pxnorml = 0;
+                        sortByVisit_count_asc();
+                }
+        });
+	
+	var sortByVisit_count_desc = function(){
+                render(sortArray(products,function(a,b){
+                        if (b.VISITCOUNT < a.VISITCOUNT)
+                                return -1;
+                        if (b.VISITCOUNT > a.VISITCOUNT)
+                                return 1;
+                        return 0;
+                }));
+        };
+        
+	var sortByVisit_count_asc = function(){
+                render(sortArray(products,function(a,b){
+                        if (a.VISITCOUNT < b.VISITCOUNT)
+                                return -1;
+                        if (a.VISITCOUNT > b.VISITCOUNT)
+                                return 1;
+                        return 0;
+                }));
+        };
+        var sortByUnit_price_desc = function(){
+                render(sortArray(products,function(a,b){
+                        if (b.UNIT_PRICE < a.UNIT_PRICE)
+                                return -1;
+                        if (b.UNIT_PRICE > a.UNIT_PRICE)
+                                return 1;
+                        return 0;
+                }));
+        };
+        var sortByUnit_price_asc = function(){
+                render(sortArray(products,function(a,b){
+                        if (a.UNIT_PRICE < b.UNIT_PRICE)
+                                return -1;
+                        if (a.UNIT_PRICE > b.UNIT_PRICE)
+                                return 1;
+                        return 0;
+                }));
+        };	
+});//document....ready end....
+</script>
+<script>
+	$(function(){
+		$("img").scrollLoading();
+	})
+</script>
+<script type="text/javascript">
+	$("div:gt(0)").click(function(){
+		$(".y_topopbx").slideUp();
+	});
+</script>
+<div style="display:none">
+	@ 2014 顺丰速运 版权所有   <a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备08034243号-22</a>
+<div style="display:none">
+</div>  
+</div>

@@ -1,0 +1,79 @@
+/*顺丰ipad首页样式 */
+.y_iadbx{width:100%;overflow:hidden}
+.y_iadbx .y_adl1{float:left;width:50%;}
+.y_iadbx .y_adl2{float:left;width:25%;}
+/*导航*/
+.y_navtl{display:table;width:100%;overflow:hidden;border-top:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2;}
+.y_navtl a,.y_navtl span{display:table-cell;width:12.46%;height:88px;line-height:88px;text-align:center;border-left:1px solid #d2d2d2;font-size:3.6em;}
+.y_navtl a:first-child{border:none}
+.y_navtl a:hover{background:#f5f5f5}
+.y_navtl a b,.y_navtl span b{display:inline-block;vertical-align:middle;width:37px;height:37px;margin:-2px 8px 0 0;}
+.y_navtl a b img{width:100%}
+.y_navtl .y_nav2 b{background-position:0 -74px;}
+.y_navtl .y_nav3 b{background-position:0 -148px;margin-top:-10px;}
+.y_navtl .y_nav4 b{background-position:0 -222px;}
+.y_navtl .y_nav5 b{background-position:0 -296px;}
+.y_navtl .y_nav6 b{background-position:0 -370px;}
+.y_navtl .y_cur,.y_navtl a:hover,.y_navtl a:active{color:#bb2434;}
+.y_navtl .y_cur.y_nav1 b{background-position:0 -37px;}
+.y_navtl .y_cur.y_nav2 b{background-position:0 -111px;}
+.y_navtl .y_cur.y_nav3 b{background-position:0 -185px;}
+.y_navtl .y_cur.y_nav4 b{background-position:0 -259px;}
+.y_navtl .y_cur.y_nav5 b{background-position:0 -333px;}
+.y_navtl .y_cur.y_nav6 b{background-position:0 -407px;}
+/*商品列表*/
+.y_productlt{padding:0 1.46% 0.5%;overflow:hidden;}
+.y_productlt li{float:left;width:50%;padding:1.56% 0;overflow:hidden;border-top:1px solid #d2d2d2;position:relative;background:url(../images/y_prlib.gif) left center no-repeat;-o-background-size:1px 88%;-webkit-background-size:1px 88%;background-size:1px 88%;margin-top:-1px;height:220px}
+.y_productlt .y_prolt{float:left;width:175px;margin:16px 6.6% 16px 5.3%;}
+.y_productlt .y_prort{float:left;width:50%;margin:30px 0;}
+.y_productlt .y_cxxx{font-size:2.8em;color:#fff;line-height:1.28em;display:inline-block;padding:0 5px;background:#bb2434;margin-bottom:13px;}
+.y_productlt .y_prort h2{font-size:3.6em;font-weight:normal;line-height:1.38em;height:1.38em;overflow:hidden;margin-bottom:8px;}
+.y_productlt .y_prort h2 a{color:#000;}
+.y_productlt .y_prort h2 a:hover{color:#bb2434}
+.y_productlt .y_prort p{font-size:2.8em;line-height:1.28em;margin-bottom:14px;max-height:3.84em;overflow:hidden}
+.y_productlt .y_price{color:#bb2434;font-size:3em;}
+.y_productlt .y_price b{font-size:1.2em;font-family:"Tahoma"}
+.y_productlt .y_cxpci{position:absolute;right:5%;width:63px;height:63px;top:8%;overflow:hidden;}
+@media (max-width: 970px){
+	.y_productlt li{width:100%;background:none;} 
+	.y_productlt .y_prolt{margin-left:3%} 
+	.y_productlt .y_prort{float:left;width:60%;}
+}
+@media (min-width: 970px) and (max-width: 2040px){
+	.y_productlt li:nth-child(2n+1){background:none;}
+	.y_productlt li:nth-child(2n+1) .y_prolt{margin-left:3%}
+}
+@media (min-width: 2040px){
+	.y_productlt li{width:33%;} 
+	.y_productlt li:nth-child(3n+1){background:none;}  
+	.y_productlt li:nth-child(3n+1) .y_prolt{margin-left:3%}
+}
+
+/*本地生活*/
+.y_navlife a{width:25%;}
+.y_navlife a b{background:url(../images/y_locllife.png) no-repeat;}
+ /*门店选择*/
+.y_mdxlbx{width:100%;overflow:hidden;padding-bottom:19px;}
+.y_mdxlbx select{float:left;margin:19px 0.73% 0 1.71%;width:22.26%;height:50px;background:#efefef;border-radius:5px;border:none;padding:14px 23px 14px 20px;font:3.6em "Hiragino Sans GB";vertical-align:middle;}
+.y_mdxlbx5 select{width:16.94%;margin:19px 1.52% 0;}
+
+/*筛选排序*/
+.y_fliter{width:100%;overflow:hidden;height:88px;border-top:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2;background:#efefef;font-size:3.6em;}
+.y_fliter a{float:left;width:25%;height:88px;line-height:88px;text-align:center;border-left:1px solid #d2d2d2;margin-left:-1px;}
+.y_fliter a b{display:inline-block;vertical-align:middle;width:14px;height:20px;margin:-2px 0 0 10px;background:url(../images/y_fliter.png) no-repeat;}
+.y_fliter .y_normbot,.y_fliter .y_pricetop,.y_fliter .y_pricebot,.y_fliter .y_cur{color:#bb2435;font-weight:bold;}
+.y_fliter .y_pxnorml b{background-position:0 -60px;}
+.y_fliter .y_normbot b{background-position:0 -80px;}
+.y_fliter .y_pricetop b{background-position:0 -20px;}
+.y_fliter .y_pricebot b{background-position:0 -40px;}
+
+/*品牌*/
+.y_brandlt{width:100%;overflow:hidden;padding-bottom:6px;}
+.y_brandlt li{float:left;width:47.85%;margin:15px 0 15px 1.43%;position:relative;}
+.y_brandlt li p{position:absolute;left;0;bottom:0;width:97%;height:40px;line-height:40px;font-size:3.6em;padding-left:3%;color:#353535;background:rgba(255,255,255,0.8);transition:all 0.2s;}
+.y_brandlt a:hover p{background:rgba(0,0,0,0.8);color:#fff}
+.y_navbrand .y_more{cursor:pointer;}
+.y_navbrand .y_more:hover{background:#f5f5f5;}
+.y_navbrand .y_more b{margin-right:0}
+.y_navbrand .y_more.y_show b{background-position:0 -407px;}
+.y_morenxv{border-top:none;display:none;opacity:0;}
