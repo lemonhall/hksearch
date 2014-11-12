@@ -2340,7 +2340,7 @@ $(function(){
 	        $.ajax({
                 	type: "GET",
                 	url: "/getProducts",
-                	data: { searchkey: searchkey, start:start, end:end}
+                	data: { searchkey: searchkey, start:start, end:end, froms:'pc'}
         	})
 		.done(function(data){
 			cb(data);

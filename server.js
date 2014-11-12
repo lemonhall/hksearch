@@ -2,6 +2,14 @@ var express     = require('express');
 var bodyParser  = require('body-parser');
 var app         = express();
 var mysql	= require("./mysql.js");
+var log4js = require('log4js');
+//console log is loaded by default, so you won't normally need to do this
+//log4js.loadAppender('console');
+log4js.loadAppender('file');
+//log4js.addAppender(log4js.appenders.console());
+log4js.addAppender(log4js.appenders.file('logs/hksearch.log'), 'hksearch');
+var logger = log4js.getLogger('hksearch');
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
@@ -10,8 +18,6 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 
 app.get("/",function(req,res){
-	//console.log(req.useragent.isiPad);
-	console.log(req.query.key);
 	var from = req.query.froms;
 	if(from === "pc"){
         	res.redirect('search2.html?key='+req.query.key);
@@ -21,11 +27,11 @@ app.get("/",function(req,res){
 });
 
 app.get("/getProducts",function(req,res){
-	console.log(req.query);
 	var searchkey = req.query.searchkey 	      || "大米";
 	var start     = parseInt(req.query.start)     || 0;
 	var end       = parseInt(req.query.end)       || 20;
-	
+	var from      = req.query.froms;
+	logger.info(from+":"+searchkey);
 	if(searchkey ==="" || searchkey === undefined){
 		res.send("");
 	}else{
