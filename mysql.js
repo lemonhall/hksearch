@@ -1,13 +1,13 @@
 var mysql = require('mysql');
-var co = require('co');
-var redisClient = require('redis').createClient();
-var wrapper = require('co-redis');
-var redisCo = wrapper(redisClient);
+//var co = require('co');
+//var redisClient = require('redis').createClient();
+//var wrapper = require('co-redis');
+//var redisCo = wrapper(redisClient);
 
 var pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '123456',
+    host: '192.168.60.5',
+    user: 'hksearch',
+    password: 'hK3earch',
     database: 'heike_product',
     port: 3306
 });
@@ -26,12 +26,12 @@ function isEmpty(obj){
 };
 
 var getProducts = function(queryParams,queryCb){
-	console.log(queryParams);
+	//console.log(queryParams);
 	var searchkey = "%"+queryParams["searchkey"]+"%";
 	var start     =     0    ;//queryParams["start"];
 	var end       =     1000 ;//queryParams["end"];
 	var cacheKey  = searchkey+start+"#"+end;
-	console.log(cacheKey);
+	//console.log(cacheKey);
 	myCache.get(cacheKey, function( err, value ){
   	if( !err && !isEmpty(value) ){
 		queryCb(value[cacheKey]);
