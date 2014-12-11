@@ -30,14 +30,22 @@ app.get("/getProducts",function(req,res){
 	var searchkey = req.query.searchkey 	      || "大米";
 	var start     = parseInt(req.query.start)     || 0;
 	var end       = parseInt(req.query.end)       || 20;
+	var page      = parseInt(req.query.page);
 	var from      = req.query.froms;
 	logger.info(from+":"+searchkey);
 	if(searchkey ==="" || searchkey === undefined){
 		res.send("");
 	}else{
-		mysql.getProducts({searchkey:searchkey,start:start,end:end},function(result){
+	   if(from =="pad"){
+	       console.log("askdfjlaksdjflkjasdkjfajsdlfsjd");
+	       mysql.getProductsIpad({searchkey:searchkey},page,function(result){
 			res.send(result);
-		});
+		 });
+	   }else{
+		 mysql.getProducts({searchkey:searchkey,start:start,end:end},function(result){
+			res.send(result);
+		 });
+	   }
 	}
 });
 
@@ -47,3 +55,4 @@ app.get("/getProductDetails",function(req,res){
         });
 });
 app.listen(3000);
+

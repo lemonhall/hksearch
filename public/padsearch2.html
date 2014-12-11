@@ -117,6 +117,7 @@ $(document).ready(function(){
 <script>
 $(document).ready(function (){
         var products = [];
+	var currentPage = 1;
         //前端取得searchkey的传参，TODO：需要测试兼容性
         var urlParams = {};
         (function () {
@@ -138,27 +139,44 @@ $(document).ready(function (){
 			
                 },100);
         }
+
+        $(window).bind("scroll",function(){
+                var scrollTop    = $(this).scrollTop();
+                var scrollHeight = $(document).height();
+                var windowHeight = $(this).height();
+
+                if(scrollTop+windowHeight == scrollHeight){
+                        //console.log("到达底部");
+                        loadPage();
+                }
+        });
+
+
 	 //处理搜索框的按键事件
         $(".search_text").keydown(function(event){
                 //console.log(event);
                 if(event.keyCode===13){
+		       currentPage = 1;
+			
+		       $("#content").html("");		
                        loadPage();
                 }
         });
-        var ajaxLoadData  = function (start,end,cb) {
+
+        var ajaxLoadData  = function (cb) {
                 var searchkey = $(".search_text").val();
                 //console.log(searchkey);
                 if(searchkey === "请输入搜索关键字"){
                         alert("error~~~~key~~~");
                         return;
                 }
-                startPageOffset = start;
-                endPageOffset   = end;
+                //startPageOffset = start;
+                //endPageOffset   = end;
 
                 $.ajax({
                         type: "GET",
                         url: "/getProducts",
-                        data: { searchkey: searchkey, start:start, end:end , froms:"pad"}
+                        data: { searchkey: searchkey, page:currentPage , froms:"pad"}
                 })
                 .done(function(data){
                         cb(data);
@@ -166,13 +184,15 @@ $(document).ready(function (){
         };//END of ajaxLoadData
 
 	function loadPage () {
+		currentPage = currentPage +1;
+		//console.log(currentPage);
                 var searchkey = $(".search_text").val();
                 //console.log(searchkey);
                 if(searchkey === "请输入搜索关键字"){
                         alert("error~~~~key~~~");
                         return;
                 }
-                ajaxLoadData(0,20,function( msg ) {
+                ajaxLoadData(function( msg ) {
                         //console.log(msg);
                         products = msg;
                         render(msg);
@@ -181,7 +201,7 @@ $(document).ready(function (){
 
         var render  = function(sorted_products){
                 var t =$("#productTemplate").render(sorted_products);
-                       $("#content").html(t);
+                       $("#content").append(t);
        };
 
 	$("#search_button").click(function(){
