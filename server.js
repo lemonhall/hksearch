@@ -37,7 +37,7 @@ app.get("/getProducts",function(req,res){
 		res.send("");
 	}else{
 	   if(from =="pad"){
-	       console.log("askdfjlaksdjflkjasdkjfajsdlfsjd");
+	       //console.log("askdfjlaksdjflkjasdkjfajsdlfsjd");
 	       mysql.getProductsIpad({searchkey:searchkey},page,function(result){
 			res.send(result);
 		 });

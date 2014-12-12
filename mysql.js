@@ -65,8 +65,10 @@ var getProductsIpad = function(queryParams,pageNum,queryCb){
 	var start     =     0;//queryParams["start"];
 	var end       =     0;//queryParams["end"];
 	var pageSize  =     20;//
-            start = pageSize*pageNum -1;
-            end   = pageSize;	
+            //start = pageSize*pageNum -1;
+            //end   = pageSize;	
+            start = pageSize*(pageNum-1);
+            end   = pageSize*pageNum;	
 	var cacheKey  = "pad#"+searchkey+"#"+pageNum;
 	//console.log(cacheKey);
 	var selectSQL_ipad ="select PRODUCT_NAME,UNIT_PRICE,LIST_PRICE,APP_USERCOUNT,VISITCOUNT,PRODUCT_ID,CENTER_PICTURE,SMALL_PICTURE,PRODUCT_TYPE_FLAG from product where (PRODUCT_NAME like ? OR SEARCHKEY like ?) AND CHECK_STATUS = 1 AND store_check_status =1 AND uc_activation_status =1 AND uc_status = 1 AND STATUS = 1";

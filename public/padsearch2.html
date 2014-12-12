@@ -156,7 +156,7 @@ $(document).ready(function (){
         $(".search_text").keydown(function(event){
                 //console.log(event);
                 if(event.keyCode===13){
-		       currentPage = 1;
+		       currentPage = 0;
 			
 		       $("#content").html("");		
                        loadPage();
@@ -205,7 +205,9 @@ $(document).ready(function (){
        };
 
 	$("#search_button").click(function(){
-		loadPage();	
+                       currentPage = 0;
+                       $("#content").html("");
+                       loadPage();
 	});
 
         //排序逻辑===============================================================
