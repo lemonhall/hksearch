@@ -2302,7 +2302,15 @@ $(function(){
 			$(".search_button").trigger("click");
 		},100);
 	}
-		
+
+	//增加了对IE6789的console支持
+	window.console = window.console || (function(){
+		var c = {}; 
+		c.log = c.warn = c.debug = c.info = c.error = c.time = c.dir = c.profile = c.clear = c.exception = c.trace = c.assert = function(){};
+		return c;
+	})();
+
+
 	var renderPageByUser = function(page){
 		 var start = 20 * (page -1);
 		 var end   = 20 * page;
@@ -2363,6 +2371,10 @@ $(function(){
                        $(".y_page").html(t);
 	};//END of renderPages.....
 
+	var renderEmpty = function(){
+		console.log("I am in renderEmpty");
+		$("#productsList").html("<p style='font=24'>没有得到有效的搜索结果</p>");
+	}
 
 	//新加的搜索逻辑=======================================================
 	$(".search_button").click(function(){
@@ -2374,9 +2386,14 @@ $(function(){
 		}
 		ajaxLoadData(0,20,function( msg ) {
 			//console.log(msg);
-			products = msg;
-			render(msg);
-	});
+			if(msg.length===0){
+				console.log("no search result");				
+				renderEmpty();	
+			}else{
+				products = msg;
+				render(msg);
+			}
+		});//END OF ajaxLoadData
 
 	});//END of search_button click
 	

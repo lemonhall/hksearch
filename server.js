@@ -2,7 +2,9 @@ var express     = require('express');
 var bodyParser  = require('body-parser');
 var app         = express();
 var mysql	= require("./mysql.js");
-var log4js = require('log4js');
+var es		= require("./elasticsearch.js");
+var log4js 	= require('log4js');
+
 //console log is loaded by default, so you won't normally need to do this
 //log4js.loadAppender('console');
 log4js.loadAppender('file');
@@ -42,9 +44,12 @@ app.get("/getProducts",function(req,res){
 			res.send(result);
 		 });
 	   }else{
-		 mysql.getProducts({searchkey:searchkey,start:start,end:end},function(result){
-			res.send(result);
-		 });
+		 //mysql.getProducts({searchkey:searchkey,start:start,end:end},function(result){
+		 //	res.send(result);
+		 //});
+                 es.getProducts({searchkey:searchkey,start:start,end:end},function(result){
+                      res.send(result);
+                 });
 	   }
 	}
 });

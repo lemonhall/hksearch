@@ -139,6 +139,12 @@ $(document).ready(function (){
 			
                 },100);
         }
+        //增加了对IE6789的console支持
+        window.console = window.console || (function(){
+                var c = {};
+                c.log = c.warn = c.debug = c.info = c.error = c.time = c.dir = c.profile = c.clear = c.exception = c.trace = c.assert = function(){};
+                return c;
+        })();
 
         $(window).bind("scroll",function(){
                 var scrollTop    = $(this).scrollTop();
