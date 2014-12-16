@@ -1,6 +1,6 @@
 var elasticsearch = require('elasticsearch');
 var client = new elasticsearch.Client({
-  host: 'localhost:9200'
+  host: '192.168.60.2:9200'
 });
 var NodeCache = require( "node-cache" );
 //var myCache = new NodeCache();
@@ -12,22 +12,6 @@ function isEmpty(obj){
     }
     return true;
 };
-var clearResult = function(hits){
-	var temp_array = [];
-        var testJson ;
-	for(var ii=0;ii<hits.length;ii++){
-		temp_array.push(hits[ii].fields);
-	}
-        for(var i=0; i<temp_array.length;i++){
-        testJson ={"PRODUCT_NAME":temp_array[i].PRODUCT_NAME,"UNIT_PRICE":temp_array[i].UNIT_PRICE,"LIST_PRICE":temp_array[i].LIST_PRICE,"APP_USERCOUNT":temp_array[i].APP_USERCOUNT,"VISITCOUNT":temp_array[i].VISITCOUNT,"PRODUCT_ID":temp_array[i].PRODUCT_ID,"CENTER_PICTURE":temp_array[i].CENTER_PICTURE,"SMALL_PICTURE":temp_array[i].SMALL_PICTURE,"PRODUCT_TYPE_FLAG":temp_array[i].PRODUCT_TYPE_FLAG};
-         if(i<temp_array.length-1){
-               testJson=testJson+",";
-         }
-        }
-   //     var json = eval('(' + testJson + ')');
-	return temp_array;	
-};
-
 
 var clearArray = function(o){
 	for(var oo in o){
@@ -66,6 +50,7 @@ var getProducts = function(queryParams,queryCb){
 		client.search({
   			index: 'jdbc',
   			type: 'jdbc',
+			size: 1000,
   			body: {
     				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","PRODUCT_TYPE_FLAG"],
     				query: {

@@ -1,7 +1,7 @@
 var elasticsearch = require("./elasticsearch.js");
 var _ 		  = require('lodash');
 
-var searchkey 	  = "羊腿";
+var searchkey 	  = "红酒";
 var start     	  = 0;
 var end       	  = 1000;
 
