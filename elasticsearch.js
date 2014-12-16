@@ -1,6 +1,6 @@
 var elasticsearch = require('elasticsearch');
 var client = new elasticsearch.Client({
-  host: 'localhost:9200'
+  host: '192.168.60.2:9200'
 });
 var NodeCache = require( "node-cache" );
 //var myCache = new NodeCache();
