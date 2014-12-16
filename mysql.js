@@ -5,7 +5,7 @@ var mysql = require('mysql');
 //var redisCo = wrapper(redisClient);
 
 var pool = mysql.createPool({
-    host: '192.168.60.5',
+    host: '192.168.60.6',
     user: 'hksearch',
     password: 'hK3earch',
     database: 'heike_product',
