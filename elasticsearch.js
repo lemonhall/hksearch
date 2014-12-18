@@ -55,7 +55,7 @@ var getProducts = function(queryParams,queryCb){
     				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","PRODUCT_TYPE_FLAG"],
     				query: {
       					filtered: {
-						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY"]}},
+						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
 						filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}  }
       					}
     				}
