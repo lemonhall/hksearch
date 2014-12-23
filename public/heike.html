@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)http://www.sfheike.com/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<meta content="yes" name="apple-mobile-web-app-capable">
+	<meta content="telephone=no" name="format-detection">
+	<meta content="email=no" name="format-detection">
+	<meta content="black" name="apple-mobile-web-app-status-bar-style">
+	<title>嘿客</title>
+	<link rel="Shortcut Icon" href="http://www.sfheike.com/favicon.ico">
+	
+ 	
+ 	<link href="./heike_files/global.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
+ 	<link href="./heike_files/index.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
+ 	
+ 	<script type="text/javascript" src="./heike_files/jquery-1.9.1.min.js"></script>
+ 	<script type="text/javascript" src="./heike_files/swipe-min.js"></script>
+ 	<script type="text/javascript" src="./padsearch_files/jquery.DOMWindow.js"></script>
+ 	<script type="text/javascript" src="./padsearch_files/html5.js"></script>
+ 	<script type="text/javascript" src="./padsearch_files/jquery.scrollLoading-min.js"></script>
+	<script type="text/javascript" src="./search_files/jsrender.min.js"></script>
+</head>
+<body>	
+	
+	
+ <div class="header"> 
+<header>
+		  <span class="return"><a href="./heike_files/heike.html"><img src="./heike_files/header_search.jpg"></a></span>
+  		<ul class="nav">
+  		
+    						<li class=""><a href="http://www.sfheike.com/wx/newfind.htm">新发现</a></li>
+      
+    	</ul>
+    	<span class="center" id="center"><img src="./heike_files/header_center.jpg"></span>
+    	<ul class="index_show" style="display: none;">
+	      	<li><a href="http://www.sfheike.com/wx/fg/order/nomalorder/cart.do?actionType=list&treeshow=true">购物车</a></li>
+	      	
+	      	<li class="li1"><a href="http://www.sfheike.com/wx/usercenter/usercenter.jsp">登录</a></li>
+	      	<li class="li2"><a href="http://www.sfheike.com/wx/fg/user/userreg.do?actionType=regsetp1">注册</a></li>
+	      	
+	      </ul>
+</header>
+<script type="text/javascript">
+	$("#center").click(function(){
+		$(".index_show").slideToggle();
+	});
+</script>
+<script type="text/javascript">
+function logout1() {
+	window.location.href="/wx/fg/user/user.do?actionType=logout" ;
+}
+</script>      
+      
+    
+ </div>
+ 
+
+<!--头部开始-->
+<div class="goods_search">
+<input type="text" class="goods-text" name="curProductkey" value="搜一搜、更多优惠商品" onblur="if(this.value==&#39;&#39;){this.value=&#39;搜一搜、更多优惠商品&#39;;}" onfocus="if(this.value==&#39;搜一搜、更多优惠商品&#39;){this.value=&#39;&#39;;}" onkeydown="javascript:if(event.keyCode==13) return searchSubmitForm();">
+<span><a href="#" id="search_button">搜索</a></span>
+</div>
+<form name="fgProductSearchForm" method="post" action="http://www.sfheike.com/wx/fg/product/fgproductSearch.do"> <input type="hidden" name="actionType" value="qiantailist">
+<input type="hidden" name="order" value="">
+<input type="hidden" name="type" value="p">
+<input type="hidden" name="xz" value="p">
+<input type="hidden" name="key" value="">
+<input type="hidden" name="viewType" value="">
+<input type="hidden" name="currentPageNo" value="1">
+<input type="hidden" name="tag" value="">
+<ul class="sort">
+<li class="sort_bg1">
+<a href="javascript:void(0)" class="active">默认<s></s></a>
+</li>
+<li>
+<a href="#" class="y_price" title="价格">价格</a><b class="bg2"></b>
+</li>
+<!--如要更改箭头图标，将b标签class=“bg2”,更改成bg3,或者bg4-->
+<li>
+<a href="javascript:subByOrder('7');">销量<b class="bg1"></b></a>
+</li>
+<li>
+<a href="#" class="y_pxnorml" title="人气">人气<b class="bg1"></b></a>
+</li>
+</ul>
+<ul id="content">
+
+<script id="productTemplate" type="text/x-jsrender">
+<li>
+    <div class="goods_list">
+    <dl>
+      <dt><a href="http://test.sfheike.com/wx/p_{{>PRODUCT_ID}}.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"></a></dt>
+      <dd>
+        <h3><a href="http://test.sfheike.com/wx/p_{{>PRODUCT_ID}}.htm" target="_blank">{{>PRODUCT_NAME}}</a></h3>
+        <p>{{>PRODUCT_NAME}}</p>
+        <div class="y_price"><b>￥{{>UNIT_PRICE}}</b></div>
+        <span>{{>APP_USERCOUNT}}人评价 好评率99.52%</span>
+      </dd>
+    </dl>
+    </div>
+</li>
+</script>
+
+</ul>
+</form> <div class="foot">
+<div class="logo">
+
+
+<script>
+function refreshCache(url){
+$.getJSON(url ,{ranNum:Math.random()} ,function(data){
+var result = data ;
+if(result.rsp == "true") {
+alert("缓存刷新成功！")
+location.reload();
+}else{
+alert("缓存刷新失败，请稍后再试！");
+}
+})
+}
+</script>
+<img src="./heike_files/1408959610155.jpg" alt="关注嘿客微信-sfheike" class="last">
+</div>
+</div>
+
+
+
+<script>
+var searchUrl = "";
+function searchSubmitForm(){
+searchUrl = "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&key=";
+if(document.getElementsByName("curProductkey")[0].value == "搜一搜、更多优惠商品" || (document.getElementsByName("curProductkey")[0].value)==""){
+alert("请输入搜索关键字");
+document.getElementsByName("curProductkey")[0].value == "";
+document.getElementsByName("curProductkey")[0].focus();
+return;
+}
+if((document.getElementsByName("curProductkey")[0].value).length >20) {
+alert("您输入的关键字过长，请控制在20个字以内.");
+document.getElementsByName("curProductkey")[0].focus();
+return;
+}
+var keys =document.getElementsByName("curProductkey")[0].value;
+//this.location =searchUrl + keys;
+}
+function subByOrder(act){
+document.fgProductSearchForm.order.value=act;
+document.fgProductSearchForm.submit();
+}
+</script>
+<a id="next" href="http://www.sfheike.com/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&order=&key="></a>
+<script src="./heike_files/jquery.infinitescroll.js"></script>
+<script>
+$(document).ready(function (){
+$('#content').infinitescroll({
+navSelector : "#next",
+nextSelector : "#next",
+itemSelector : "#content div.goods_list",
+maxPage : '1135',
+path: function(index) {
+return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&order=&key=&page=" + index;
+}
+}, function(newElements, data, url){
+});
+});
+</script>
+ <script>
+   $(document).ready(function (){
+        var products = [];
+	var currentPage = 1;
+        //前端取得searchkey的传参，TODO：需要测试兼容性
+        var urlParams = {};
+        (function () {
+            var match,
+                pl     = /\+/g,  // Regex for replacing addition symbol with a space
+                search = /([^&=]+)=?([^&]*)/g,
+                decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
+                query  = window.location.search.substring(1);
+
+            while (match = search.exec(query))
+               urlParams[decode(match[1])] = decode(match[2]);
+        })();
+	if(urlParams.key!="undefined"){
+                var key       = urlParams.key;
+                var searchkey = $(".goods-text").val(key);
+
+                setTimeout(function(){
+                        loadPage();
+			
+                },100);
+        }
+        //增加了对IE6789的console支持
+        window.console = window.console || (function(){
+                var c = {};
+                c.log = c.warn = c.debug = c.info = c.error = c.time = c.dir = c.profile = c.clear = c.exception = c.trace = c.assert = function(){};
+                return c;
+        })();
+
+        $(window).bind("scroll",function(){
+                var scrollTop    = $(this).scrollTop();
+                var scrollHeight = $(document).height();
+                var windowHeight = $(this).height();
+
+                if(scrollTop+windowHeight == scrollHeight){
+                        //console.log("到达底部");
+                        loadPage();
+                }
+        });
+
+
+	 //处理搜索框的按键事件
+        $(".goods-text").keydown(function(event){
+                //console.log(event);
+                if(event.keyCode===13){
+		       currentPage = 0;
+			
+		       $("#content").html("");		
+                       loadPage();
+                }
+        });
+
+        var ajaxLoadData  = function (cb) {
+                var searchkey = $(".goods-text").val();
+                //console.log(searchkey);
+                if(searchkey === "请输入搜索关键字"){
+                        alert("error~~~~key~~~");
+                        return;
+                }
+                //startPageOffset = start;
+                //endPageOffset   = end;
+
+                $.ajax({
+                        type: "GET",
+                        url: "/getProducts",
+                        data: { searchkey: searchkey, page:currentPage , froms:"wx"}
+                })
+                .done(function(data){
+                        cb(data); 
+                });
+        };//END of ajaxLoadData
+
+	function loadPage () {
+		currentPage = currentPage +1;
+		//console.log(currentPage);
+                var searchkey = $(".goods-text").val();
+                //console.log(searchkey);
+                if(searchkey === "请输入搜索关键字"){
+                        alert("error~~~~key~~~");
+                        return;
+                }
+                ajaxLoadData(function( msg ) {
+                       // alert("msg:"+msg);
+                        products = msg;
+                        render(msg);
+        	});
+	};
+
+        var render  = function(sorted_products){
+                if(sorted_products.length<=0){
+				   $("#content").html("没有此类商品，请查搜索其它商品！");
+				 }else{
+					var t =$("#productTemplate").render(sorted_products);
+                        $("#content").append(t);
+				 }
+       };
+
+	$("#search_button").click(function(){
+                       currentPage = 0;
+                       $("#content").html("");
+                       loadPage();
+	});
+
+        //排序逻辑===============================================================
+        var sortArray = function(parray,sortsub){
+                products = parray.sort(sortsub);
+                return products;
+        };
+	var y_price = 0;
+
+	$(".y_price").click(function(){
+		if(y_price===0){
+			y_price = 1; 
+			sortByUnit_price_desc();
+		}else{
+			y_price = 0;
+			sortByUnit_price_asc();
+		}		
+	});
+
+	var y_pxnorml = 0;
+
+        $(".y_pxnorml").click(function(){
+                if(y_pxnorml===0){
+                        y_pxnorml = 1;
+                        sortByVisit_count_desc();
+                }else{
+                        y_pxnorml = 0;
+                        sortByVisit_count_asc();
+                }
+        });
+	
+	var sortByVisit_count_desc = function(){
+                render(sortArray(products,function(a,b){
+                        if (b.VISITCOUNT < a.VISITCOUNT)
+                                return -1;
+                        if (b.VISITCOUNT > a.VISITCOUNT)
+                                return 1;
+                        return 0;
+                }));
+        };
+        
+	var sortByVisit_count_asc = function(){
+                render(sortArray(products,function(a,b){ 
+                        if (a.VISITCOUNT < b.VISITCOUNT)
+                                return -1;
+                        if (a.VISITCOUNT > b.VISITCOUNT)
+                                return 1;
+                        return 0;
+                }));
+        };
+        var sortByUnit_price_desc = function(){
+                render(sortArray(products,function(a,b){//alert("a:"+a.UNIT_PRICE+":b="+b.UNIT_PRICE);
+                        if (b.UNIT_PRICE < a.UNIT_PRICE){
+                                alert("-1");
+								return -1;
+						}
+                        if (b.UNIT_PRICE > a.UNIT_PRICE){
+						        alert("1");
+								return 1;
+						}
+                                
+                        return 0;
+                }));
+        };
+        var sortByUnit_price_asc = function(){
+                render(sortArray(products,function(a,b){
+                        if (a.UNIT_PRICE < b.UNIT_PRICE)
+                                return -1;
+                        if (a.UNIT_PRICE > b.UNIT_PRICE)
+                                return 1;
+                        return 0;
+                }));
+        };	
+});//document....ready end....
+</script>
+ 
+<script type="text/javascript">
+	$("div:gt(0)").click(function(){
+		$(".index_show").slideUp();
+	});
+</script>
+</body></html>

@@ -1,6 +1,6 @@
 var elasticsearch = require("./elasticsearch.js");
 
-var searchkey = "羊腿";
+var searchkey = "贪";
 var start     = 0;
 var end       = 1000;
 

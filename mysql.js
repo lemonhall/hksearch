@@ -116,4 +116,4 @@ var getProductDetails = function(queryCb){
 
 module.exports.getProducts		=  getProducts;
 module.exports.getProductDetails	=  getProductDetails;
-module.exports.getProductsIpad		= getProductsIpad
+module.exports.getProductsIpad		=  getProductsIpad

@@ -2318,9 +2318,15 @@ $(function(){
 			//console.log("page:",page);
 			//console.log("start:",start);
 			//console.log("end:",end);
-
+                  
                  var t =$("#productTemplate").render(products.slice(start,end));
                         $("#productsList").html(t);
+              //      if(products.length<=0){
+	//	          $("#productsList").html("没有此类商品，请查搜索其它商品！");
+	  //          }else{
+	//		var t =$("#productTemplate").render(products.slice(start,end));
+          //              $("#productsList").html(t);
+	//	    }
 	}
 	
 	//处理搜索框的按键事件

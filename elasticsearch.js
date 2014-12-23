@@ -4,7 +4,7 @@ var client = new elasticsearch.Client({
 });
 var NodeCache = require( "node-cache" );
 //var myCache = new NodeCache();
-var myCache = new NodeCache( { stdTTL: 1000, checkperiod: 120 } );
+var myCache = new NodeCache( { stdTTL: 400, checkperiod: 120 } );
 
 function isEmpty(obj){
     for (var name in obj){
@@ -34,12 +34,12 @@ var clearR = function(hits){
 	return temp_array;
 };
 
-
+//PC版本
 var getProducts = function(queryParams,queryCb){
 
 	var searchkey = queryParams["searchkey"];
 	var start     =     0    ;//queryParams["start"];
-        var end       =     1000 ;//queryParams["end"];
+        var end       =     200 ;//queryParams["end"];
         var cacheKey  = searchkey+"#"+start+"#"+end;
 
 
@@ -78,6 +78,7 @@ var getProducts = function(queryParams,queryCb){
 	})//END of get from cache...
 }//END of getProducts
 
+//Pad版本/微信版本也要用
 var getProductsByPage = function(queryParams,pageFrom,queryCb){
 
 	var searchkey = queryParams["searchkey"];
@@ -103,7 +104,7 @@ var getProductsByPage = function(queryParams,pageFrom,queryCb){
 					"size": pageSize,
 					query: {
       					filtered: {
-						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY"]}},
+						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
 						filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}  }
       					}
     				}

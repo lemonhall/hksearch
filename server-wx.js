@@ -21,10 +21,14 @@ app.use(express.static('public'));
 
 app.get("/",function(req,res){
 	var from = req.query.froms;
-	if(from === "pc"){
+	if(from == "pc"){
         	res.redirect('search2.html?key='+req.query.key);
 	}else{
-		res.redirect('padsearch2.html?key='+req.query.key);
+             if(from =="wx"){
+               res.redirect('heike.html?key='+req.query.key);
+             }else{
+               res.redirect('padsearch2.html?key='+req.query.key);
+             }	
 	}
 });
 
@@ -40,19 +44,25 @@ app.get("/getProducts",function(req,res){
 	}else{
 	   if(from =="pad"){
 	       //console.log("askdfjlaksdjflkjasdkjfajsdlfsjd");
-	      // mysql.getProductsIpad({searchkey:searchkey},page,function(result){
-		//	res.send(result);
-		// });
-               es.getProductsByPage({searchkey:searchkey},page,function(result){
-                        res.send(result);
-                 });
+	       mysql.getProductsIpad({searchkey:searchkey},page,function(result){
+			res.send(result);
+		 });
 	   }else{
-		 //mysql.getProducts({searchkey:searchkey,start:start,end:end},function(result){
-		 //	res.send(result);
-		 //});
-                 es.getProducts({searchkey:searchkey,start:start,end:end},function(result){
+                if(from =="wx"){
+                 // console.log("askdfjlaksdjflkjasdkjfajsdlfsjd");
+                 //  mysql.getProductsIpad({searchkey:searchkey},page,function(result){
+                  //      res.send(result);
+                //   });
+				   es.getProductsByPage({searchkey:searchkey},page,function(result){
+                        res.send(result);
+                }else{
+                   //mysql.getProducts({searchkey:searchkey,start:start,end:end},function(result){
+                    //     res.send(result);
+                   //});
+                   es.getProducts({searchkey:searchkey,start:start,end:end},function(result){
                       res.send(result);
-                 });
+                   }); 
+		}
 	   }
 	}
 });
