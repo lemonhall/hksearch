@@ -117,7 +117,7 @@ $(document).ready(function(){
 <script>
 $(document).ready(function (){
         var products = [];
-	var currentPage = 1;
+	var currentPage = 0;
         //前端取得searchkey的传参，TODO：需要测试兼容性
         var urlParams = {};
         (function () {
@@ -132,11 +132,10 @@ $(document).ready(function (){
         })();
 	if(urlParams.key!="undefined"){
                 var key       = urlParams.key;
-                var searchkey = $(".search_text").val(key);
-
+ 		//设置get传参到搜索输入框
+		$(".search_text").val(key);
                 setTimeout(function(){
                         loadPage();
-			
                 },100);
         }
         //增加了对IE6789的console支持
@@ -168,17 +167,12 @@ $(document).ready(function (){
                        loadPage();
                 }
         });
-
         var ajaxLoadData  = function (cb) {
                 var searchkey = $(".search_text").val();
-                //console.log(searchkey);
                 if(searchkey === "请输入搜索关键字"){
                         alert("error~~~~key~~~");
                         return;
                 }
-                //startPageOffset = start;
-                //endPageOffset   = end;
-
                 $.ajax({
                         type: "GET",
                         url: "/getProducts",
