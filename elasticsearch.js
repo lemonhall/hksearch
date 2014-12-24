@@ -115,7 +115,7 @@ var getProductsByPage = function(queryParams,page,queryCb){
 		if(err){logger.info("getCachError:"+err);}
 		logger.info("cacheValue="+cacheValue);
 		if(cacheValue){
-			queryCb(cacheValue);
+			queryCb(JSON.parse(cacheValue));
 			logger.info("hit cache");
 		}else{
 		client.search({
@@ -135,7 +135,7 @@ var getProductsByPage = function(queryParams,page,queryCb){
 		}).then(function (resp) {
     				var hits = resp.hits.hits;
 				if(hits){ hits = clearR(hits);}
-					redisClient.set(cacheKey,hits,function (err, reply) {
+					redisClient.set(cacheKey,JSON.stringify(hits),function (err, reply) {
 						if(err){
 							logger.error("setCacheError:"+err);
 						}else{
