@@ -1,8 +1,6 @@
 var elasticsearch = require("./elasticsearch.js");
 
-var searchkey = "贪";
-var start     = 0;
-var end       = 1000;
+var searchkey = "苹果";
 
 elasticsearch.getProductsByPage({searchkey:searchkey},1,function(result){
         console.log(result);
