@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0109)http://test.sfheike.com/pad/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&key=%B4%F3%C3%D7 -->
+<!-- saved from url=(0109)http://www.sfheike.com/pad/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&key=%B4%F3%C3%D7 -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -10,7 +10,7 @@
 	<title>嘿客-首页</title>
 	<meta name="keywords" content="嘿客-频道关键字">
 	<meta name="description" content="首页频道描述">
-	<link rel="Shortcut Icon" href="http://test.sfheike.com/favicon.ico">
+	<link rel="Shortcut Icon" href="http://www.sfheike.com/favicon.ico">
  	<link href="./padsearch_files/global.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
  	<link href="./padsearch_files/channel.css" rel="stylesheet" rev="stylesheet" type="text/css" media="all">
  	<script type="text/javascript" src="./padsearch_files/jquery-1.10.2.min.js"></script><style type="text/css"></style>
@@ -25,7 +25,7 @@
 	
  <div class="header"> 
 	 
-<form name="userloginForm" method="POST" action="http://test.sfheike.com/pad/fg/user/user.do" onsubmit="return login()" target="_top">
+<form name="userloginForm" method="POST" action="http://www.sfheike.com/pad/fg/user/user.do" onsubmit="return login()" target="_top">
 	<input type="hidden" name="channelId" value="index">
 	<input type="hidden" name="actionType" value="gologin">
 	<input type="hidden" name="requestPageUrl" value="%2Fpad%2Fdecorator%2FpageDecorator.jsp%3FactionType%3Dqiantailist%26type%3Dp%26xz%3Dp%26key%3D%25B4%25F3%25C3%25D7">
@@ -37,13 +37,13 @@
 		  <nav>
   		<span class="y_navmeb"></span>
   		
-    						<a href="http://test.sfheike.com/pad/find.htm">新发现</a>
+    						<a href="http://www.sfheike.com/pad/find.htm">新发现</a>
       
 		  <div class="y_topopbx" id="user1">
-<a href="http://test.sfheike.com/pad/fg/order/nomalorder/cart.do?actionType=list&treeshow=true"><b></b>购物车</a>
+<a href="http://www.sfheike.com/pad/fg/order/nomalorder/cart.do?actionType=list&treeshow=true"><b></b>购物车</a>
 
-  <a class="y_tpmeb" href="http://test.sfheike.com/pad/fg/user/poplogin.ftl" id="login"><b></b>登录</a>
-     <a class="y_tpmeb2" href="http://test.sfheike.com/pad/fg/user/userreg.do?actionType=regsetp1"><b></b>注册</a>
+  <a class="y_tpmeb" href="http://www.sfheike.com/pad/fg/user/poplogin.ftl" id="login"><b></b>登录</a>
+     <a class="y_tpmeb2" href="http://www.sfheike.com/pad/fg/user/userreg.do?actionType=regsetp1"><b></b>注册</a>
 
 
 
@@ -74,7 +74,7 @@ $(document).ready(function(){
 		  </script>
 		  <b></b>
     	</nav>
-    	<h1><a href="http://test.sfheike.com/pad/"><img src="./padsearch_files/y_logo.jpg"></a></h1>
+    	<h1><a href="http://www.sfheike.com/pad/"><img src="./padsearch_files/y_logo.jpg"></a></h1>
     	<div class="y_serch">
 				<input type="text" class="search_text" name="curProductkey"">
 				<a href="#" id="search_button"></a>	
@@ -105,9 +105,9 @@ $(document).ready(function(){
 <script id="productTemplate" type="text/x-jsrender">
 <!--列表-->
 <li>
-        <div class="y_prolt"><a href="http://test.sfheike.com/pad/p_{{>PRODUCT_ID}}.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}" src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"></a></div>
+        <div class="y_prolt"><a href="http://www.sfheike.com/pad/p_{{>PRODUCT_ID}}.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}" src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"></a></div>
         <div class="y_prort">
-        <h2><a href="http://test.sfheike.com/pad/p_{{>PRODUCT_ID}}.htm" target="_blank">{{>PRODUCT_NAME}}</a></h2>
+        <h2><a href="http://www.sfheike.com/pad/p_{{>PRODUCT_ID}}.htm" target="_blank">{{>PRODUCT_NAME}}</a></h2>
                 <p>{{>PRODUCT_NAME}}</p>
         <div class="y_price">￥<b>{{>UNIT_PRICE}}</b></div>
         </div>
@@ -210,6 +210,17 @@ $(document).ready(function (){
 		 }
        };
 
+	   var renderOrder  = function(sorted_products){
+                //var t =$("#productTemplate").render(sorted_products);
+                 //      $("#content").append(t);
+                if(sorted_products.length<=0){
+		     $("#content").html("<div style='text-align:center;color:#f00;font-size: 16px;padding: 20px 0;'>没有此类商品，请搜索其它商品！</div>");
+		 }else{
+		     var t =$("#productTemplate").render(sorted_products);
+                     $("#content").html(t);
+		 }
+       };
+
 	$("#search_button").click(function(){
                        currentPage = 0;
                        $("#content").html("");
@@ -246,7 +257,7 @@ $(document).ready(function (){
         });
 	
 	var sortByVisit_count_desc = function(){
-                render(sortArray(products,function(a,b){
+                renderOrder(sortArray(products,function(a,b){
                         if (b.VISITCOUNT < a.VISITCOUNT)
                                 return -1;
                         if (b.VISITCOUNT > a.VISITCOUNT)
@@ -256,7 +267,7 @@ $(document).ready(function (){
         };
         
 	var sortByVisit_count_asc = function(){
-                render(sortArray(products,function(a,b){
+                renderOrder(sortArray(products,function(a,b){
                         if (a.VISITCOUNT < b.VISITCOUNT)
                                 return -1;
                         if (a.VISITCOUNT > b.VISITCOUNT)
@@ -265,7 +276,7 @@ $(document).ready(function (){
                 }));
         };
         var sortByUnit_price_desc = function(){
-                render(sortArray(products,function(a,b){
+                renderOrder(sortArray(products,function(a,b){
                         if (b.UNIT_PRICE < a.UNIT_PRICE)
                                 return -1;
                         if (b.UNIT_PRICE > a.UNIT_PRICE)
@@ -274,7 +285,7 @@ $(document).ready(function (){
                 }));
         };
         var sortByUnit_price_asc = function(){
-                render(sortArray(products,function(a,b){
+                renderOrder(sortArray(products,function(a,b){
                         if (a.UNIT_PRICE < b.UNIT_PRICE)
                                 return -1;
                         if (a.UNIT_PRICE > b.UNIT_PRICE)

@@ -102,6 +102,7 @@ var getProductsByPage = function(queryParams,pageFrom,queryCb){
     				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","PRODUCT_TYPE_FLAG"],
     				"from": from,
 					"size": pageSize,
+					"sort":{ "create_time":{"order":"desc"}},
 					query: {
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
