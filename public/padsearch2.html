@@ -202,7 +202,8 @@ $(document).ready(function (){
         var render  = function(sorted_products){
                 //var t =$("#productTemplate").render(sorted_products);
                  //      $("#content").append(t);
-                if(sorted_products.length<=0){
+				// alert("currentPage:"+currentPage);
+          if(sorted_products.length<=0&&(currentPage<=1)){
 		     $("#content").html("<div style='text-align:center;color:#f00;font-size: 16px;padding: 20px 0;'>没有此类商品，请搜索其它商品！</div>");
 		 }else{
 		     var t =$("#productTemplate").render(sorted_products);

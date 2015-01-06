@@ -24,7 +24,11 @@ app.get("/",function(req,res){
 	if(from === "pc"){
         	res.redirect('search2.html?key='+req.query.key);
 	}else{
-		res.redirect('padsearch2.html?key='+req.query.key);
+		if(from === "wx"){
+		  res.redirect('heike.html?key='+req.query.key);
+		}else{
+		  res.redirect('padsearch2.html?key='+req.query.key);
+		}		
 	}
 });
 
@@ -39,14 +43,23 @@ app.get("/getProducts",function(req,res){
 		res.send("");
 	}else{
 	   if(source === "pad"){
-	       //logger.info("I am in Pad");
+	        logger.info("I am in Pad");
                es.getProductsByPage({searchkey:searchkey},page,function(result){
                         res.send(result);
                  });
 	   }else{
-                 es.getProducts({searchkey:searchkey,start:start,end:end},function(result){
+		  if(source === "wx"){
+			  logger.info("I am in WX");
+	      	  es.getProductsByPageAndWX({searchkey:searchkey},page,function(result){
+                        res.send(result);
+                 });		   
+		  }else{
+			  logger.info("I am in PC");
+		      es.getProducts({searchkey:searchkey,start:start,end:end},function(result){
                       res.send(result);
                  });
+		  }
+                 
 	   }
 	}
 });

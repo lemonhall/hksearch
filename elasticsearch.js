@@ -150,5 +150,56 @@ var getProductsByPage = function(queryParams,page,queryCb){
 	})//END of client cache....
 }//END of getProductsByPage
 
+var getProductsByPageAndWX = function(queryParams,page,queryCb){
+	logger.info("I am in getProductsByPageAndWX Mothed");
+	var searchkey = queryParams["searchkey"];
+    	var page      = page || 1;	
+    	var cacheKey  = searchkey+"#"+page;
+	var from      = 0 ;
+	var pageSize  = 20;
+        var end       = pageSize;    
+	    from      = pageSize  *  (page -1);
+	    logger.info("cacheKey:"+cacheKey);
+	redisClient.get(cacheKey,function (err, cacheValue) {
+		if(err){logger.info("getCachError:"+err);}
+		logger.info("cacheValue="+cacheValue);
+		if(cacheValue){
+			queryCb(JSON.parse(cacheValue));
+			logger.info("hit cache");
+		}else{
+		client.search({
+  			index: 'jdbc',
+  			type:  'jdbc',
+  			body: {
+    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","PRODUCT_TYPE_FLAG"],
+    				"from" : from,
+				"size" : pageSize,
+				query: {
+      					filtered: {
+						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
+						filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}  }
+      					}
+    				}
+  			}
+		}).then(function (resp) {
+    				var hits = resp.hits.hits;
+				if(hits){ hits = clearR(hits);}
+					redisClient.set(cacheKey,JSON.stringify(hits),function (err, reply) {
+						if(err){
+							logger.error("setCacheError:"+err);
+						}else{
+							logger.info("setCacheWith:"+cacheKey+" and "+hits);
+						}
+					});
+					queryCb(hits);
+		}, function (err) {
+    			logger.error(err.message);
+		});
+		}//END of cache else
+	})//END of client cache....
+}//END of getProductsByPageAndWX
+
+
 module.exports.getProducts              =  getProducts;
 module.exports.getProductsByPage        =  getProductsByPage;
+module.exports.getProductsByPageAndWX   =  getProductsByPageAndWX;

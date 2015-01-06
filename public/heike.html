@@ -27,7 +27,7 @@
 	
  <div class="header"> 
 <header>
-		  <span class="return"><a href="./heike_files/heike.html"><img src="./heike_files/header_search.jpg"></a></span>
+		  <span class="return"><a href="http://search.sfheike.com/heike.html"><img src="./heike_files/header_search.jpg"></a></span>
   		<ul class="nav">
   		
     						<li class=""><a href="http://www.sfheike.com/wx/newfind.htm">新发现</a></li>
@@ -78,22 +78,27 @@ function logout1() {
 <a href="#" class="y_price" title="价格">价格</a><b class="bg2"></b>
 </li>
 <!--如要更改箭头图标，将b标签class=“bg2”,更改成bg3,或者bg4-->
-<li>
-<a href="javascript:subByOrder('7');">销量<b class="bg1"></b></a>
-</li>
+<!--<li>
+<a href="#" class="y_sales">销量<b class="bg1"></b></a>
+</li>-->
 <li>
 <a href="#" class="y_pxnorml" title="人气">人气<b class="bg1"></b></a>
 </li>
 </ul>
+ 
+<!--模板目的地-->
+<section class="y_productlt">
 <ul id="content">
+</ul>
+</section>
 
 <script id="productTemplate" type="text/x-jsrender">
 <li>
     <div class="goods_list">
     <dl>
-      <dt><a href="http://test.sfheike.com/wx/p_{{>PRODUCT_ID}}.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"></a></dt>
+      <dt><a href="http://test.sfheike.com/weixin/p_{{>PRODUCT_ID}}.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"></a></dt>
       <dd>
-        <h3><a href="http://test.sfheike.com/wx/p_{{>PRODUCT_ID}}.htm" target="_blank">{{>PRODUCT_NAME}}</a></h3>
+        <h3><a href="http://test.sfheike.com/weixin/p_{{>PRODUCT_ID}}.htm" target="_blank">{{>PRODUCT_NAME}}</a></h3>
         <p>{{>PRODUCT_NAME}}</p>
         <div class="y_price"><b>￥{{>UNIT_PRICE}}</b></div>
         <span>{{>APP_USERCOUNT}}人评价 好评率99.52%</span>
@@ -103,53 +108,11 @@ function logout1() {
 </li>
 </script>
 
-</ul>
 </form> <div class="foot">
 <div class="logo">
-
-
-<script>
-function refreshCache(url){
-$.getJSON(url ,{ranNum:Math.random()} ,function(data){
-var result = data ;
-if(result.rsp == "true") {
-alert("缓存刷新成功！")
-location.reload();
-}else{
-alert("缓存刷新失败，请稍后再试！");
-}
-})
-}
-</script>
 <img src="./heike_files/1408959610155.jpg" alt="关注嘿客微信-sfheike" class="last">
 </div>
 </div>
-
-
-
-<script>
-var searchUrl = "";
-function searchSubmitForm(){
-searchUrl = "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&key=";
-if(document.getElementsByName("curProductkey")[0].value == "搜一搜、更多优惠商品" || (document.getElementsByName("curProductkey")[0].value)==""){
-alert("请输入搜索关键字");
-document.getElementsByName("curProductkey")[0].value == "";
-document.getElementsByName("curProductkey")[0].focus();
-return;
-}
-if((document.getElementsByName("curProductkey")[0].value).length >20) {
-alert("您输入的关键字过长，请控制在20个字以内.");
-document.getElementsByName("curProductkey")[0].focus();
-return;
-}
-var keys =document.getElementsByName("curProductkey")[0].value;
-//this.location =searchUrl + keys;
-}
-function subByOrder(act){
-document.fgProductSearchForm.order.value=act;
-document.fgProductSearchForm.submit();
-}
-</script>
 <a id="next" href="http://www.sfheike.com/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&order=&key="></a>
 <script src="./heike_files/jquery.infinitescroll.js"></script>
 <script>
@@ -169,7 +132,7 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
  <script>
    $(document).ready(function (){
         var products = [];
-	var currentPage = 1;
+	var currentPage = 0;
         //前端取得searchkey的传参，TODO：需要测试兼容性
         var urlParams = {};
         (function () {
@@ -223,7 +186,7 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
 
         var ajaxLoadData  = function (cb) {
                 var searchkey = $(".goods-text").val();
-                //console.log(searchkey);
+               // console.log(searchkey);
                 if(searchkey === "请输入搜索关键字"){
                         alert("error~~~~key~~~");
                         return;
@@ -245,7 +208,7 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
 		currentPage = currentPage +1;
 		//console.log(currentPage);
                 var searchkey = $(".goods-text").val();
-                //console.log(searchkey);
+                console.log(searchkey);
                 if(searchkey === "请输入搜索关键字"){
                         alert("error~~~~key~~~");
                         return;
@@ -257,13 +220,28 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
         	});
 	};
 
-        var render  = function(sorted_products){
+       var render  = function(sorted_products){
+                //var t =$("#productTemplate").render(sorted_products);
+                 //      $("#content").append(t);
+				//alert("currentPage:"+currentPage);
+                if(sorted_products.length<=0&&(currentPage<=1)){
+		     $("#content").html("<div style='text-align:center;color:#f00;font-size: 16px;padding: 20px 0;'>没有此类商品，请搜索其它商品！</div>");
+		 }else{
+			 
+		     var t =$("#productTemplate").render(sorted_products);
+                     $("#content").append(t);
+		 }
+       };
+
+	   var renderOrder  = function(sorted_products){
+                //var t =$("#productTemplate").render(sorted_products);
+                 //      $("#content").append(t);
                 if(sorted_products.length<=0){
-				   $("#content").html("没有此类商品，请查搜索其它商品！");
-				 }else{
-					var t =$("#productTemplate").render(sorted_products);
-                        $("#content").append(t);
-				 }
+		     $("#content").html("<div style='text-align:center;color:#f00;font-size: 16px;padding: 20px 0;'>没有此类商品，请搜索其它商品！</div>");
+		 }else{
+		     var t =$("#productTemplate").render(sorted_products);
+                     $("#content").html(t);
+		 }
        };
 
 	$("#search_button").click(function(){
@@ -288,6 +266,17 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
 			sortByUnit_price_asc();
 		}		
 	});
+    
+	var y_sales = 0;
+	$(".y_sales").click(function(){
+		if(y_price===0){
+			y_sales = 1; 
+			sortByUnit_price_desc();
+		}else{
+			y_sales = 0;
+			sortByUnit_price_asc();
+		}		
+	});
 
 	var y_pxnorml = 0;
 
@@ -302,7 +291,7 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
         });
 	
 	var sortByVisit_count_desc = function(){
-                render(sortArray(products,function(a,b){
+                renderOrder(sortArray(products,function(a,b){
                         if (b.VISITCOUNT < a.VISITCOUNT)
                                 return -1;
                         if (b.VISITCOUNT > a.VISITCOUNT)
@@ -312,7 +301,7 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
         };
         
 	var sortByVisit_count_asc = function(){
-                render(sortArray(products,function(a,b){ 
+                renderOrder(sortArray(products,function(a,b){ 
                         if (a.VISITCOUNT < b.VISITCOUNT)
                                 return -1;
                         if (a.VISITCOUNT > b.VISITCOUNT)
@@ -321,13 +310,11 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
                 }));
         };
         var sortByUnit_price_desc = function(){
-                render(sortArray(products,function(a,b){//alert("a:"+a.UNIT_PRICE+":b="+b.UNIT_PRICE);
-                        if (b.UNIT_PRICE < a.UNIT_PRICE){
-                                alert("-1");
+                renderOrder(sortArray(products,function(a,b){
+                        if (b.UNIT_PRICE < a.UNIT_PRICE){                              
 								return -1;
 						}
-                        if (b.UNIT_PRICE > a.UNIT_PRICE){
-						        alert("1");
+                        if (b.UNIT_PRICE > a.UNIT_PRICE){						      
 								return 1;
 						}
                                 
@@ -335,7 +322,7 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
                 }));
         };
         var sortByUnit_price_asc = function(){
-                render(sortArray(products,function(a,b){
+                renderOrder(sortArray(products,function(a,b){
                         if (a.UNIT_PRICE < b.UNIT_PRICE)
                                 return -1;
                         if (a.UNIT_PRICE > b.UNIT_PRICE)
