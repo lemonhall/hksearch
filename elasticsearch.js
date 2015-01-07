@@ -154,7 +154,7 @@ var getProductsByPageAndWX = function(queryParams,page,queryCb){
 	logger.info("I am in getProductsByPageAndWX Mothed");
 	var searchkey = queryParams["searchkey"];
     	var page      = page || 1;	
-    	var cacheKey  = searchkey+"#"+page;
+    	var cacheKey  ="wx#"+ searchkey+"#"+page;
 	var from      = 0 ;
 	var pageSize  = 20;
         var end       = pageSize;    
@@ -177,7 +177,7 @@ var getProductsByPageAndWX = function(queryParams,page,queryCb){
 				query: {
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
-						filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}  }
+						filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1,product_type_flag:0}  }
       					}
     				}
   			}

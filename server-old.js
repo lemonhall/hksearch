@@ -26,9 +26,7 @@ app.get("/",function(req,res){
 	}else{
 		if(from === "wx"){
 		  res.redirect('heike.html?key='+req.query.key);
-		}else if(from === "vo"){
-          res.redirect('vosearch2.html?key='+req.query.key);
-        }else{
+		}else{
 		  res.redirect('padsearch2.html?key='+req.query.key);
 		}		
 	}
@@ -55,18 +53,11 @@ app.get("/getProducts",function(req,res){
 	      	  es.getProductsByPageAndWX({searchkey:searchkey},page,function(result){
                         res.send(result);
                  });		   
-		  }else if(source === "vo"){
-		      logger.info("I am in VO");
-               es.getProductsByPage({searchkey:searchkey},page,function(result){
-                        res.send(result);
-                 });
-		  }else if(source === "pc"){
+		  }else{
 			  logger.info("I am in PC");
 		      es.getProducts({searchkey:searchkey,start:start,end:end},function(result){
                       res.send(result);
                  });
-		  }else{
-		     logger.info("no search method");
 		  }
                  
 	   }
