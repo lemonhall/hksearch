@@ -2265,6 +2265,7 @@ $(function(){
 <li class="">
 <div class="y_bigpic">
   <div>
+      <p id="{{>PRODUCT_ID}}" class="y_haitaoImg"><img src="images/11.png" /></p>
       <a target="_blank" href="http://www.sfheike.com/p_{{>PRODUCT_ID}}.htm" title="{{>PRODUCT_NAME}}"><img data-url="http://hkimg.sf-express.com/{{>CENTER_PICTURE}}" src="http://hkimg.sf-express.com/{{>CENTER_PICTURE}}" alt="{{>PRODUCT_NAME}}}" width="208" height="208"></a>
   </div>
 </div>
@@ -2412,7 +2413,12 @@ $(function(){
 	var render    = function(sorted_products){
         	var t =$("#productTemplate").render(sorted_products.slice(0,20));
               	       $("#productsList").html(t);
-			setTimeout(function(){
+		       for(var i=0; i <sorted_products.length; i++){
+			    if(sorted_products[i].product_type_flag==2){
+				document.getElementById(sorted_products[i].PRODUCT_ID).style.display="block";					
+	                    }
+			}	
+                       setTimeout(function(){
 				renderPages();
 			},1500);
         

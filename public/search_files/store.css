@@ -668,3 +668,5 @@ label.btn_one a:hover,label.btn_two a:hover{filter:alpha(opacity=80);-moz-opacit
 .virt_sort_text{width:126px;float:right;line-height:20px;padding-top:6px;color:#686868;}
 .virt_sort_text a{color:#686868;}
 
+.y_haitaoImg{position:absolute; display:none; right:0; bottom:0; width:120px; height:120px; z-index:99999;}
+.y_haitaoImg img{display:block; width:120px; height:120px;}

@@ -62,5 +62,5 @@ header,section,hgroup,nav{display:block;}
 .gwc_pic{ width:63px; height:55px; background:url(../images/gwc.jpg) no-repeat; float:left; margin-left:30%}
 .gwc_wz{ float:left; height:55px; line-height:55px; margin:10px 0; text-align:left; text-indent:10px; font-size:4.5em}
 
-
+.y_haitaoImg{position:absolute; display:none; left:0; top:0; width:100px; height:100px; background:url(../images/22.png) no-repeat 0 0; background-size:auto 150px; z-index:99999;}
 

@@ -75,7 +75,7 @@ var getProducts = function(queryParams,queryCb){
   			type: 'jdbc',
 			size: 1000,
   			body: {
-    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","PRODUCT_TYPE_FLAG"],
+    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag"],
     				query: {
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
@@ -122,7 +122,7 @@ var getProductsByPage = function(queryParams,page,queryCb){
   			index: 'jdbc',
   			type:  'jdbc',
   			body: {
-    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","PRODUCT_TYPE_FLAG"],
+    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag"],
     				"from" : from,
 				"size" : pageSize,
 				query: {
@@ -171,7 +171,7 @@ var getProductsByPageAndWX = function(queryParams,page,queryCb){
   			index: 'jdbc',
   			type:  'jdbc',
   			body: {
-    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","PRODUCT_TYPE_FLAG"],
+    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag"],
     				"from" : from,
 				"size" : pageSize,
 				query: {
