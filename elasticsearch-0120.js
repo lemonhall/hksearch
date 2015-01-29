@@ -5,9 +5,6 @@ var client = new elasticsearch.Client({
 });
 
 var NodeCache = require( "node-cache" );
-  
-
-var storeIdStr = ['1111111812343','1111111819204'];  //接收海禾的store_id
 
 //var myCache = new NodeCache();
 var myCache 	= new NodeCache( { stdTTL: 400, checkperiod: 120 } );
@@ -78,13 +75,12 @@ var getProducts = function(queryParams,queryCb){
   			type: 'jdbc',
 			size: 1000,
   			body: {
-    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag","store_id"],
+    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag"],
     				query: {
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
-						//filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1},bool:{must_not: {term:{store_id: storeId}}}   }
-      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},must_not:{term:{store_id:storeIdStr}}} }
-						}
+						filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}  }
+      					}
     				}
   			}
 		}).then(function (resp) {
@@ -105,7 +101,7 @@ var getProducts = function(queryParams,queryCb){
 	})//END of get from cache...
 }//END of getProducts
 
-//Pad版本也要用
+//Pad版本/微信版本也要用
 var getProductsByPage = function(queryParams,page,queryCb){
 	var searchkey = queryParams["searchkey"];
     	var page      = page || 1;	
@@ -117,7 +113,7 @@ var getProductsByPage = function(queryParams,page,queryCb){
 	 //   logger.info("cacheKey:"+cacheKey);
 	redisClient.get(cacheKey,function (err, cacheValue) {
 		if(err){logger.info("getCachError:"+err);}
-		//logger.info("cacheValue="+cacheValue);
+		logger.info("cacheValue="+cacheValue);
 		if(cacheValue){
 			queryCb(JSON.parse(cacheValue));
 			logger.info("hit cache");
@@ -126,15 +122,14 @@ var getProductsByPage = function(queryParams,page,queryCb){
   			index: 'jdbc',
   			type:  'jdbc',
   			body: {
-    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag","store_id"],
+    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag"],
     				"from" : from,
 				"size" : pageSize,
 				query: {
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
-					//	filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1},bool:{must_not: { term: {store_id: storeId}}}  }
-      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},must_not:{term:{store_id:storeIdStr}}} }
-						}
+						filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}  }
+      					}
     				}
   			}
 		}).then(function (resp) {
@@ -155,109 +150,56 @@ var getProductsByPage = function(queryParams,page,queryCb){
 	})//END of client cache....
 }//END of getProductsByPage
 
-//微信版本
 var getProductsByPageAndWX = function(queryParams,page,queryCb){
 	logger.info("I am in getProductsByPageAndWX Mothed");
 	var searchkey = queryParams["searchkey"];
-    var page      = page || 1;	
-    var cacheKey  = "wx#"+searchkey+"#"+page;
+    	var page      = page || 1;	
+    	var cacheKey  ="wx#"+ searchkey+"#"+page;
 	var from      = 0 ;
 	var pageSize  = 20;
-    var end       = pageSize;    
+        var end       = pageSize;    
 	    from      = pageSize  *  (page -1);
-	 //   logger.info("cacheKey:"+cacheKey);
+	    logger.info("cacheKey:"+cacheKey);
 	redisClient.get(cacheKey,function (err, cacheValue) {
 		if(err){logger.info("getCachError:"+err);}
-		//logger.info("cacheValue="+cacheValue);
+		logger.info("cacheValue="+cacheValue);
 		if(cacheValue){
 			queryCb(JSON.parse(cacheValue));
-	//		logger.info("hit cache");
+			logger.info("hit cache");
 		}else{
 		client.search({
   			index: 'jdbc',
   			type:  'jdbc',
   			body: {
-    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag","store_id"],
+    				fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag"],
     				"from" : from,
 				"size" : pageSize,
 				query: {
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
-					//	filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1},bool:{must_not: { term: {store_id: storeId}}}  }
-      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},must_not:{term:{store_id:storeIdStr}}} }
-						}
+						filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1,product_type_flag:0}  }
+      					}
     				}
   			}
 		}).then(function (resp) {
-    			var hits = resp.hits.hits;
+    				var hits = resp.hits.hits;
 				if(hits){ hits = clearR(hits);}
-				redisClient.set(cacheKey,JSON.stringify(hits),function (err, reply) {
+					redisClient.set(cacheKey,JSON.stringify(hits),function (err, reply) {
 						if(err){
 							logger.error("setCacheError:"+err);
 						}else{
 							logger.info("setCacheWith:"+cacheKey+" and "+hits);
 						}
-				});
-				queryCb(hits);
+					});
+					queryCb(hits);
 		}, function (err) {
-    		logger.error(err.message);
+    			logger.error(err.message);
 		});
 		}//END of cache else
 	})//END of client cache....
 }//END of getProductsByPageAndWX
 
-//海禾专用搜索
-var getProductsByPagehaihe = function(queryParams,page,queryCb){
-	
-	var searchkey = queryParams["searchkey"];
-    var page      = page || 1;	
-    var cacheKey  = "haihe#"+searchkey+"#"+page;
-	var from      = 0 ;
-	var pageSize  = 20;
-    var end       = pageSize;    
-	    from      = pageSize  *  (page -1);
-	//logger.info("cacheKey="+cacheKey);
-	redisClient.get(cacheKey,function (err, cacheValue) {
-		if(err){logger.info("getCachError:"+err);}
-		//logger.info("cacheValue="+cacheValue);
-		if(cacheValue){
-			queryCb(JSON.parse(cacheValue));
-	//		logger.info("hit cache");
-		}else{
-	client.search({
-  			index: 'jdbc',
-  			type:  'jdbc',
-  			body: {
-    			fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag","store_id"],
-    			"from" : from,
-				"size" : pageSize,
-				query: {
-      					filtered: {
-						  query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
-						  filter : { term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1,store_id:storeIdStr} }
-      					}
-    				}
-  			}
-		}).then(function (resp) {
-    		var hits = resp.hits.hits;
-			if(hits){ hits = clearR(hits);}
-			redisClient.set(cacheKey,JSON.stringify(hits),function (err, reply) {
-					if(err){
-						logger.error("setCacheError:"+err);
-					}else{
-						logger.info("setCacheWith:"+cacheKey+" and "+hits);
-					}
-			});
-			queryCb(hits);logger.info(hits);
-		}, function (err) {
-    		logger.error(err.message);
-		});
-		}//END of cache else
-	})//END of client cache....
-}//END of getProductsByPagehaihe
-
 
 module.exports.getProducts              =  getProducts;
 module.exports.getProductsByPage        =  getProductsByPage;
 module.exports.getProductsByPageAndWX   =  getProductsByPageAndWX;
-module.exports.getProductsByPagehaihe   =  getProductsByPagehaihe

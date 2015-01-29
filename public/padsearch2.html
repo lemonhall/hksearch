@@ -105,7 +105,7 @@ $(document).ready(function(){
 <script id="productTemplate" type="text/x-jsrender">
 <!--列表-->
 <li>
-        <div class="y_prolt"> <p id="{{>PRODUCT_ID}}" class="y_haitaoImg"></p><a href="http://www.sfheike.com/pad/p_{{>PRODUCT_ID}}.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}" src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"></a></div>
+        <div class="y_prolt"><p id="{{>PRODUCT_ID}}" class="y_haitaoImg"></p> <a href="http://www.sfheike.com/pad/p_{{>PRODUCT_ID}}.htm" target="_blank"><img data-url="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}" src="http://hkimg.sf-express.com/{{>SMALL_PICTURE}}"></a></div>
         <div class="y_prort">
         <h2><a href="http://www.sfheike.com/pad/p_{{>PRODUCT_ID}}.htm" target="_blank">{{>PRODUCT_NAME}}</a></h2>
                 <p>{{>PRODUCT_NAME}}</p>
@@ -117,6 +117,7 @@ $(document).ready(function(){
 <script>
 $(document).ready(function (){
         var products = [];
+		var products_sort = [];
 	var currentPage = 0;
         //前端取得searchkey的传参，TODO：需要测试兼容性
         var urlParams = {};
@@ -184,6 +185,9 @@ $(document).ready(function (){
         };//END of ajaxLoadData
 
 	function loadPage () {
+		if(currentPage==0){
+			products_sort = [];
+		}
 		currentPage = currentPage +1;
 		//console.log(currentPage);
                 var searchkey = $(".search_text").val();
@@ -194,7 +198,12 @@ $(document).ready(function (){
                 }
                 ajaxLoadData(function( msg ) {
                         //console.log(msg);
-                        products = msg;
+                        if(msg.length>0){
+							products = msg;
+							for(var j =0; j <products.length; j++){
+								products_sort.push(products[j]);
+							}
+						} 
                         render(msg);
         	});
 	};
@@ -209,26 +218,26 @@ $(document).ready(function (){
 		     var t =$("#productTemplate").render(sorted_products);
                      $("#content").append(t);
                      for(var i=0; i <sorted_products.length; i++){
-                        if(sorted_products[i].product_type_flag==2){
-                          document.getElementById(sorted_products[i].PRODUCT_ID).style.display="block";
-                        }
-                     }
+			if(sorted_products[i].product_type_flag==2){
+			  document.getElementById(sorted_products[i].PRODUCT_ID).style.display="block";
+			}
+		     }
 		 }
        };
 
 	   var renderOrder  = function(sorted_products){
                 //var t =$("#productTemplate").render(sorted_products);
                  //      $("#content").append(t);
-                if(sorted_products.length<=0){
+              if(sorted_products.length<=0&&(currentPage<=1)){
 		     $("#content").html("<div style='text-align:center;color:#f00;font-size: 16px;padding: 20px 0;'>没有此类商品，请搜索其它商品！</div>");
 		 }else{
 		     var t =$("#productTemplate").render(sorted_products);
                      $("#content").html(t);
-                     for(var i=0; i <sorted_products.length; i++){
-                        if(sorted_products[i].product_type_flag==2){
-                          document.getElementById(sorted_products[i].PRODUCT_ID).style.display="block";
-                        }
-                     }
+				 for(var i=0; i <sorted_products.length; i++){
+					if(sorted_products[i].product_type_flag==2){
+					  document.getElementById(sorted_products[i].PRODUCT_ID).style.display="block";
+					}
+				 }
 		 }
        };
 
@@ -268,7 +277,7 @@ $(document).ready(function (){
         });
 	
 	var sortByVisit_count_desc = function(){
-                renderOrder(sortArray(products,function(a,b){
+                renderOrder(sortArray(products_sort,function(a,b){
                         if (b.VISITCOUNT < a.VISITCOUNT)
                                 return -1;
                         if (b.VISITCOUNT > a.VISITCOUNT)
@@ -278,7 +287,7 @@ $(document).ready(function (){
         };
         
 	var sortByVisit_count_asc = function(){
-                renderOrder(sortArray(products,function(a,b){
+                renderOrder(sortArray(products_sort,function(a,b){
                         if (a.VISITCOUNT < b.VISITCOUNT)
                                 return -1;
                         if (a.VISITCOUNT > b.VISITCOUNT)
@@ -287,7 +296,7 @@ $(document).ready(function (){
                 }));
         };
         var sortByUnit_price_desc = function(){
-                renderOrder(sortArray(products,function(a,b){
+                renderOrder(sortArray(products_sort,function(a,b){
                         if (b.UNIT_PRICE < a.UNIT_PRICE)
                                 return -1;
                         if (b.UNIT_PRICE > a.UNIT_PRICE)
@@ -296,7 +305,7 @@ $(document).ready(function (){
                 }));
         };
         var sortByUnit_price_asc = function(){
-                renderOrder(sortArray(products,function(a,b){
+                renderOrder(sortArray(products_sort,function(a,b){
                         if (a.UNIT_PRICE < b.UNIT_PRICE)
                                 return -1;
                         if (a.UNIT_PRICE > b.UNIT_PRICE)

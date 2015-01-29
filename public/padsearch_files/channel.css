@@ -59,7 +59,7 @@
 
 /*…∏—°≈≈–Ú*/
 .y_fliter{width:100%;overflow:hidden;height:88px;border-top:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2;background:#efefef;font-size:3.6em;}
-.y_fliter a{float:left;width:25%;height:88px;line-height:88px;text-align:center;border-left:1px solid #d2d2d2;margin-left:-1px;}
+.y_fliter a{float:left;width:25%;height:88px;line-height:88px;text-align:center;border-left:1px solid #d2d2d2;margin-left:-1px;cursor: pointer;}
 .y_fliter a b{display:inline-block;vertical-align:middle;width:14px;height:20px;margin:-2px 0 0 10px;background:url(../images/y_fliter.png) no-repeat;}
 .y_fliter .y_normbot,.y_fliter .y_pricetop,.y_fliter .y_pricebot,.y_fliter .y_cur{color:#bb2435;font-weight:bold;}
 .y_fliter .y_pxnorml b{background-position:0 -60px;}

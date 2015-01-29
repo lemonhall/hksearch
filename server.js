@@ -27,8 +27,10 @@ app.get("/",function(req,res){
 		if(from === "wx"){
 		  res.redirect('heike.html?key='+req.query.key);
 		}else if(from === "vo"){
-          res.redirect('vosearch2.html?key='+req.query.key);
-        }else{
+                  res.redirect('vosearch2.html?key='+req.query.key);
+                }else if(from === "haihe"){
+                   res.redirect('haihesearch.html?key='+req.query.key);
+                }else{
 		  res.redirect('padsearch2.html?key='+req.query.key);
 		}		
 	}
@@ -65,7 +67,12 @@ app.get("/getProducts",function(req,res){
 		      es.getProducts({searchkey:searchkey,start:start,end:end},function(result){
                       res.send(result);
                  });
-		  }else{
+		  }else if(source === "haihe"){
+                      logger.info("I am in haihe");
+			  es.getProductsByPagehaihe({searchkey:searchkey},page,function(result){
+                      res.send(result);
+                 });
+                  }else{
 		     logger.info("no search method");
 		  }
                  
