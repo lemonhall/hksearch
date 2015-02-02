@@ -217,7 +217,9 @@ return "/wx/fg/product/fgproductSearch.do?actionType=qiantailist&type=p&xz=p&ord
                         alert("error~~~~key~~~");
                         return;
                 }
-		history.pushState(1,"嘿客","http://search.sfheike.com/heike.html?key="+searchkey);
+
+		history.pushState(1,"嘿客-"+searchkey,"http://search.sfheike.com/heike.html?key="+searchkey);
+
                 ajaxLoadData(function( msg ) {
                        // alert("msg:"+msg);
                         if(msg.length>0){
