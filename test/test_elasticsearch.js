@@ -1,4 +1,4 @@
-var elasticsearch = require("./elasticsearch.js");
+var elasticsearch = require("./es.js");
 
 var searchkey = "100049903";
 

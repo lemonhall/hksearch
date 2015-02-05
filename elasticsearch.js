@@ -83,7 +83,7 @@ var getProducts = function(queryParams,queryCb){
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
 						//filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1},bool:{must_not: {term:{store_id: storeId}}}   }
-      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},must_not:{term:{store_id:storeIdStr}}} }
+      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},must_not:{terms:{store_id:storeIdStr}}} }
 						}
     				}
   			}
@@ -133,7 +133,7 @@ var getProductsByPage = function(queryParams,page,queryCb){
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
 					//	filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1},bool:{must_not: { term: {store_id: storeId}}}  }
-      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},must_not:{term:{store_id:storeIdStr}}} }
+      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},must_not:{terms:{store_id:storeIdStr}}} }
 						}
     				}
   			}
@@ -184,7 +184,7 @@ var getProductsByPageAndWX = function(queryParams,page,queryCb){
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
 					//	filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1},bool:{must_not: { term: {store_id: storeId}}}  }
-      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},should:{term:{product_type_flag:0}},must_not:{term:{store_id:storeIdStr}}} }
+      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},should:{term:{product_type_flag:0}},must_not:{terms:{store_id:storeIdStr}}} }
 						}
     				}
   			}
