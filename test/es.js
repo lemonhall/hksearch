@@ -58,8 +58,8 @@ var getProductsByPage = function(queryParams,page,queryCb){
                       filtered: {
                       		query  :  { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
                       		filter :  { 
-					    bool: { must:    { term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},
-					  	    must_not:{ terms:{store_id:storeIdStr} } 
+					    bool: { must:    { term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}}
+					  	    //must_not:{ terms:{store_id:storeIdStr} } 
 					  	  } 
 					  }
                                 }
@@ -74,4 +74,49 @@ var getProductsByPage = function(queryParams,page,queryCb){
                 });
 }//END of getProductsByPage
 
+//海禾专用搜索
+var getProductsByPagehaihe = function(queryParams,page,queryCb){
+
+        var searchkey = queryParams["searchkey"];
+        var page      = page || 1;
+        var cacheKey  = "haihe#"+searchkey+"#"+page;
+        var from      = 0 ;
+        var pageSize  = 20;
+        var end       = pageSize;
+            from      = pageSize  *  (page -1);
+        client.search({
+                        index: 'jdbc',
+                        type:  'jdbc',
+                        body: {
+                        fields : ["PRODUCT_NAME","CHECK_STATUS","CREATE_TIME","UNIT_PRICE","LIST_PRICE","APP_USERCOUNT","VISITCOUNT","PRODUCT_ID","CENTER_PICTURE","SMALL_PICTURE","product_type_flag","store_id"],
+                        "from" : from,
+                        "size" : pageSize,
+                        query:  {
+                                        filtered: {
+                                                  query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
+                                                  filter : { 
+							   bool: { 
+								   must:[
+									{ 
+									term:  {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}
+								        },
+								   	{
+									terms: {store_id:storeIdStr}
+									}
+								    ]  
+ 								 }
+						           }
+                                        }
+                                }
+                        }
+                }).then(function (resp) {
+                var hits = resp.hits.hits;
+                        if(hits){ hits = clearR(hits);}
+                        queryCb(hits);
+                }, function (err) {
+                        console.log(err.message);
+                });
+}//END of getProductsByPagehaihe
+
 module.exports.getProductsByPage        =  getProductsByPage;
+module.exports.getProductsByPagehaihe   =  getProductsByPagehaihe;
