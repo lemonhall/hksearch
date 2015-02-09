@@ -132,9 +132,17 @@ var getProductsByPage = function(queryParams,page,queryCb){
 				query: {
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
-					//	filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1},bool:{must_not: { term: {store_id: storeId}}}  }
-      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},must_not:{terms:{store_id:storeIdStr}}} }
+      						filter : { 
+						   bool: {  
+							   must:    {
+								     term:  { CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1 }
+							   },
+							   must_not:{ 
+								     terms: { store_id:storeIdStr }
+							   }
+							 } 
 						}
+					}
     				}
   			}
 		}).then(function (resp) {
@@ -159,11 +167,11 @@ var getProductsByPage = function(queryParams,page,queryCb){
 var getProductsByPageAndWX = function(queryParams,page,queryCb){
 	logger.info("I am in getProductsByPageAndWX Mothed");
 	var searchkey = queryParams["searchkey"];
-    var page      = page || 1;	
-    var cacheKey  = "wx#"+searchkey+"#"+page;
+    	var page      = page || 1;	
+    	var cacheKey  = "wx#"+searchkey+"#"+page;
 	var from      = 0 ;
 	var pageSize  = 20;
-    var end       = pageSize;    
+    	var end       = pageSize;    
 	    from      = pageSize  *  (page -1);
 	 //   logger.info("cacheKey:"+cacheKey);
 	redisClient.get(cacheKey,function (err, cacheValue) {
@@ -183,9 +191,14 @@ var getProductsByPageAndWX = function(queryParams,page,queryCb){
 				query: {
       					filtered: {
 						query  : { multi_match  : { query:searchkey,fields : ["PRODUCT_NAME","SEARCHKEY","PRODUCT_NO"]}},
-					//	filter : { term         : {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1},bool:{must_not: { term: {store_id: storeId}}}  }
-      					filter : { bool:{must:{term:{CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},should:{term:{product_type_flag:0}},must_not:{terms:{store_id:storeIdStr}}} }
-						}
+      						filter : { 
+							bool:{
+								must:    {term: {CHECK_STATUS:1,store_check_status:1,uc_activation_status:1,uc_status:1,STATUS:1}},
+								should:  {term: {product_type_flag:0}},
+								must_not:{terms:{store_id:storeIdStr}}
+							     } 
+							 }
+						  }
     				}
   			}
 		}).then(function (resp) {
